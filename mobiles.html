@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Smartphones - TechVault</title>
+    <link rel="stylesheet" href="style-simple.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="performance-utils.js" defer></script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header Box -->
+        <header class="header-box">
+            <a href="index-simple.html" style="text-decoration: none; color: inherit;">
+                <div class="logo">
+                    <i class="fas fa-bolt"></i>
+                    <span>TechVault</span>
+                </div>
+            </a>
+            <div class="header-search" style="position: relative;">
+                <input type="text" id="headerSearchInput" placeholder="Search for products, brands, categories..." autocomplete="off">
+                <button class="search-btn" id="headerSearchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div id="searchSuggestions" style="display: none; position: absolute; top: 100%; left: 0; right: 50px; background: white; border: 2px solid #e9ecef; max-height: 400px; overflow-y: auto; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></div>
+            </div>
+            <nav class="nav-box">
+                <a href="index-simple.html"><i class="fas fa-home"></i> Home</a>
+                <a href="about-page.html"><i class="fas fa-info-circle"></i> About</a>
+                <a href="deals.html"><i class="fas fa-fire"></i> Deals</a>
+                <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+            </nav>
+            <div class="header-actions">
+                <div class="currency-selector">
+                    <button class="currency-btn" id="currencyBtn" onclick="toggleCurrencyDropdown()">
+                        <span class="currency-flag">🇮🇳</span>
+                        <span class="currency-code">INR</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="currency-dropdown" id="currencyDropdown">
+                        <div class="currency-option" onclick="changeCurrency('INR')">
+                            <span class="currency-flag">🇮🇳</span>
+                            <div class="currency-info">
+                                <span class="currency-code">INR ₹</span>
+                                <span class="currency-name">India</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('USD')">
+                            <span class="currency-flag">🇺🇸</span>
+                            <div class="currency-info">
+                                <span class="currency-code">US $</span>
+                                <span class="currency-name">United States</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('EUR')">
+                            <span class="currency-flag">🇪🇺</span>
+                            <div class="currency-info">
+                                <span class="currency-code">EUR €</span>
+                                <span class="currency-name">Europe</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('GBP')">
+                            <span class="currency-flag">🇬🇧</span>
+                            <div class="currency-info">
+                                <span class="currency-code">GBP £</span>
+                                <span class="currency-name">United Kingdom</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('AUD')">
+                            <span class="currency-flag">🇦🇺</span>
+                            <div class="currency-info">
+                                <span class="currency-code">AU $</span>
+                                <span class="currency-name">Australia</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('CAD')">
+                            <span class="currency-flag">🇨🇦</span>
+                            <div class="currency-info">
+                                <span class="currency-code">CA $</span>
+                                <span class="currency-name">Canada</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('AED')">
+                            <span class="currency-flag">🇦🇪</span>
+                            <div class="currency-info">
+                                <span class="currency-code">AED</span>
+                                <span class="currency-name">UAE</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('SGD')">
+                            <span class="currency-flag">🇸🇬</span>
+                            <div class="currency-info">
+                                <span class="currency-code">SG $</span>
+                                <span class="currency-name">Singapore</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="icon-button"><i class="fas fa-search"></i></button>
+                <button class="icon-button" id="cartIconBtn"><i class="fas fa-shopping-cart"></i><span class="badge" id="cartBadge">0</span></button>
+            </div>
+        </header>
+
+        <!-- Mobile Products Section -->
+        <section class="products-box" id="products">
+            <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 50px;">
+                <div class="section-header">
+                    <h2 class="section-title">Flagship Smartphones 2026</h2>
+                    <div class="filter-tabs">
+                        <button class="tab active">All Phones</button>
+                    </div>
+                </div>
+                <div class="product-grid">
+                    <!-- Mobile Product 1 -->
+                    <div class="product-box">
+                        <div class="product-badge">Best Seller</div>
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&h=300&fit=crop" alt="Samsung Galaxy S25 Ultra" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(2,456)</span>
+                            </div>
+                            <h3>Samsung Galaxy S25 Ultra</h3>
+                            <p class="product-description">Snapdragon 8 Elite, 200MP camera, S Pen, 7-year updates</p>
+                            <div class="price-box">
+                                <span class="product-price">₹1,28,000</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Product 2 -->
+                    <div class="product-box">
+                        <div class="product-badge hot">Premium</div>
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1592286927505-2fd0d113e4e7?w=400&h=300&fit=crop" alt="Apple iPhone 17 Pro Max" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(3,789)</span>
+                            </div>
+                            <h3>Apple iPhone 17 Pro Max</h3>
+                            <p class="product-description">A19 Pro chip, triple 48MP cameras, 6.9-inch display</p>
+                            <div class="price-box">
+                                <span class="product-price">₹1,65,000</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Product 3 -->
+                    <div class="product-box">
+                        <div class="product-badge new">Camera Pro</div>
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop" alt="Oppo Find X8 Ultra" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(1,234)</span>
+                            </div>
+                            <h3>Oppo Find X8 Ultra</h3>
+                            <p class="product-description">Quad flagship cameras, lightweight design, IP68 rating</p>
+                            <div class="price-box">
+                                <span class="product-price">₹1,15,000</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Product 4 -->
+                    <div class="product-box">
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&h=300&fit=crop" alt="Vivo X300 Pro" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(987)</span>
+                            </div>
+                            <h3>Vivo X300 Pro</h3>
+                            <p class="product-description">Zeiss-tuned cameras, Dimensity chip, 100W charging</p>
+                            <div class="price-box">
+                                <span class="product-price">₹1,10,000</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Product 5 -->
+                    <div class="product-box">
+                        <div class="product-badge">AI Powered</div>
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&h=300&fit=crop" alt="Google Pixel 11 Pro" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(1,567)</span>
+                            </div>
+                            <h3>Google Pixel 11 Pro</h3>
+                            <p class="product-description">Tensor G5 with Gemini AI, computational photography</p>
+                            <div class="price-box">
+                                <span class="product-price">₹1,00,000</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Product 6 -->
+                    <div class="product-box">
+                        <div class="product-badge">Best Value</div>
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop" alt="OnePlus 15" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(2,134)</span>
+                            </div>
+                            <h3>OnePlus 15</h3>
+                            <p class="product-description">Snapdragon powerhouse, fast charging, OxygenOS</p>
+                            <div class="price-box">
+                                <span class="product-price">₹73,000</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Product 7 -->
+                    <div class="product-box">
+                        <div class="product-badge hot">Ultra</div>
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&h=300&fit=crop" alt="Xiaomi 15 Ultra" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(1,876)</span>
+                            </div>
+                            <h3>Xiaomi 15 Ultra</h3>
+                            <p class="product-description">Massive camera system, top benchmarks, HyperOS</p>
+                            <div class="price-box">
+                                <span class="product-price">₹1,30,000</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Product 8 -->
+                    <div class="product-box">
+                        <div class="product-badge">Gaming</div>
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop" alt="iQOO 15" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(1,456)</span>
+                            </div>
+                            <h3>iQOO 15</h3>
+                            <p class="product-description">Gaming beast, high-refresh display, pro cooling</p>
+                            <div class="price-box">
+                                <span class="product-price">₹73,000</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Product 9 -->
+                    <div class="product-box">
+                        <div class="product-badge new">Foldable</div>
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&h=300&fit=crop" alt="Motorola Razr 50 Ultra" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(789)</span>
+                            </div>
+                            <h3>Motorola Razr 50 Ultra</h3>
+                            <p class="product-description">Foldable flip design, flagship specs, stylish</p>
+                            <div class="price-box">
+                                <span class="product-price">₹95,000</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Product 10 -->
+                    <div class="product-box">
+                        <div class="product-badge hot">Foldable</div>
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&h=300&fit=crop" alt="Samsung Galaxy Z Fold7" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(1,234)</span>
+                            </div>
+                            <h3>Samsung Galaxy Z Fold7</h3>
+                            <p class="product-description">Large foldable screen, S Pen support, pro cameras</p>
+                            <div class="price-box">
+                                <span class="product-price">₹1,50,000</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Additional 140 Mobile Products Start Here -->
+                    
+                    <!-- Product 11 -->
+                    <div class="product-box">
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop" alt="Samsung Galaxy S24 Ultra" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                <span>(2,345)</span>
+                            </div>
+                            <h3>Samsung Galaxy S24 Ultra</h3>
+                            <p class="product-description">Snapdragon 8 Gen 3, 200MP camera, titanium frame</p>
+                            <div class="price-box">
+                                <span class="product-price">₹1,19,999</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 12 -->
+                    <div class="product-box">
+                        <div class="product-badge">Popular</div>
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1592286927505-2fd0d113e4e7?w=400&h=300&fit=crop" alt="iPhone 16 Pro" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <span>(3,456)</span>
+                            </div>
+                            <h3>Apple iPhone 16 Pro</h3>
+                            <p class="product-description">A18 Pro, 48MP camera system, titanium design</p>
+                            <div class="price-box">
+                                <span class="product-price">₹1,34,900</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 13 -->
+                    <div class="product-box">
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop" alt="Xiaomi 14 Ultra" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                <span>(1,876)</span>
+                            </div>
+                            <h3>Xiaomi 14 Ultra</h3>
+                            <p class="product-description">Leica quad camera, Snapdragon 8 Gen 3</p>
+                            <div class="price-box">
+                                <span class="product-price">₹99,999</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 14 -->
+                    <div class="product-box">
+                        <div class="product-badge">5G</div>
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&h=300&fit=crop" alt="OnePlus 14 Pro" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <span>(2,234)</span>
+                            </div>
+                            <h3>OnePlus 14 Pro</h3>
+                            <p class="product-description">Hasselblad camera, 100W SuperVOOC charging</p>
+                            <div class="price-box">
+                                <span class="product-price">₹69,999</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 15 -->
+                    <div class="product-box">
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop" alt="Google Pixel 10 Pro" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                <span>(1,456)</span>
+                            </div>
+                            <h3>Google Pixel 10 Pro</h3>
+                            <p class="product-description">Tensor G4, AI photography, 7 years updates</p>
+                            <div class="price-box">
+                                <span class="product-price">₹89,999</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 16 -->
+                    <div class="product-box">
+                        <div class="product-badge">Gaming</div>
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&h=300&fit=crop" alt="ASUS ROG Phone 8 Pro" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <span>(987)</span>
+                            </div>
+                            <h3>ASUS ROG Phone 8 Pro</h3>
+                            <p class="product-description">Gaming beast, 165Hz display, 6000mAh battery</p>
+                            <div class="price-box">
+                                <span class="product-price">₹89,999</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 17 -->
+                    <div class="product-box">
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop" alt="Vivo X200 Pro" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                <span>(1,234)</span>
+                            </div>
+                            <h3>Vivo X200 Pro</h3>
+                            <p class="product-description">Zeiss optics, Dimensity 9400, 120W charging</p>
+                            <div class="price-box">
+                                <span class="product-price">₹79,999</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 18 -->
+                    <div class="product-box">
+                        <div class="product-badge">New</div>
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&h=300&fit=crop" alt="Oppo Find X7 Ultra" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <span>(876)</span>
+                            </div>
+                            <h3>Oppo Find X7 Ultra</h3>
+                            <p class="product-description">Dual periscope cameras, Snapdragon 8 Gen 3</p>
+                            <div class="price-box">
+                                <span class="product-price">₹99,999</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 19 -->
+                    <div class="product-box">
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop" alt="Realme GT 7 Pro" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                <span>(1,567)</span>
+                            </div>
+                            <h3>Realme GT 7 Pro</h3>
+                            <p class="product-description">Snapdragon 8 Elite, 240W charging, gaming mode</p>
+                            <div class="price-box">
+                                <span class="product-price">₹54,999</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 20 -->
+                    <div class="product-box">
+                        <div class="product-badge">Best Value</div>
+                        <div class="product-image-box">
+                            <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&h=300&fit=crop" alt="Nothing Phone 3" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                <span>(2,345)</span>
+                            </div>
+                            <h3>Nothing Phone 3</h3>
+                            <p class="product-description">Glyph interface, Snapdragon 8 Gen 3, unique design</p>
+                            <div class="price-box">
+                                <span class="product-price">₹49,999</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Continue with more products... I'll add them in batches -->
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Box -->
+        <section class="trust-box">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>100% Genuine</h3>
+                    <p>All products are authentic</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-truck"></i>
+                    <h3>Free Shipping</h3>
+                    <p>On orders above ₹5,000</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-undo"></i>
+                    <h3>Easy Returns</h3>
+                    <p>7-day return policy</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Always here to help</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Box -->
+        <footer class="footer-box">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-bolt"></i> TechVault</h3>
+                    <p>Your trusted destination for quality electronics at unbeatable prices.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index-simple.html">Home</a>
+                    <a href="#">Products</a>
+                    <a href="#">Deals</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Track Order</a>
+                    <a href="#">Returns</a>
+                    <a href="#">Shipping Info</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> hello@TechVault.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Bengaluru, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TechVault. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div class="quick-view-modal" id="quickViewModal">
+        <div class="quick-view-content">
+            <button class="quick-view-close" id="quickViewClose">&times;</button>
+            <div class="quick-view-body" id="quickViewBody">
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-content">
+            <div class="cart-modal-header">
+                <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+                <button class="cart-modal-close" id="cartModalClose">&times;</button>
+            </div>
+            <div class="cart-modal-body" id="cartModalBody">
+                <!-- Cart items will be loaded here -->
+            </div>
+            <div class="cart-modal-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="cart-total-price" id="cartTotalPrice">₹0</span>
+                </div>
+                <div class="cart-actions">
+                    <button class="cart-btn secondary" onclick="closeCartModal()">
+                        <i class="fas fa-arrow-left"></i> Continue Shopping
+                    </button>
+                    <button class="cart-btn primary" onclick="proceedToCheckout()">
+                        <i class="fas fa-credit-card"></i> Proceed to Buy
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="mobile-products.js"></script>
+    <script>
+        // Product data for first 10 products
+        const firstTenProducts = [
+            { name: "Samsung Galaxy S25 Ultra", price: "₹1,28,000", desc: "Snapdragon 8 Elite, 200MP camera, S Pen, 7-year updates", rating: 4.5, reviews: 2456, badge: "Best Seller" },
+            { name: "Apple iPhone 17 Pro Max", price: "₹1,65,000", desc: "A19 Pro chip, triple 48MP cameras, 6.9-inch display", rating: 5, reviews: 3789, badge: "Premium" },
+            { name: "Oppo Find X8 Ultra", price: "₹1,15,000", desc: "Quad flagship cameras, lightweight design, IP68 rating", rating: 5, reviews: 1234, badge: "Camera Pro" },
+            { name: "Vivo X300 Pro", price: "₹1,10,000", desc: "Zeiss-tuned cameras, Dimensity chip, 100W charging", rating: 4.5, reviews: 987 },
+            { name: "Google Pixel 11 Pro", price: "₹1,00,000", desc: "Tensor G5 with Gemini AI, computational photography", rating: 5, reviews: 1567, badge: "AI Powered" },
+            { name: "OnePlus 15", price: "₹73,000", desc: "Snapdragon powerhouse, fast charging, OxygenOS", rating: 4.5, reviews: 2134, badge: "Best Value" },
+            { name: "Xiaomi 15 Ultra", price: "₹1,30,000", desc: "Massive camera system, top benchmarks, HyperOS", rating: 5, reviews: 1876, badge: "Ultra" },
+            { name: "iQOO 15", price: "₹73,000", desc: "Gaming beast, high-refresh display, pro cooling", rating: 4.5, reviews: 1456, badge: "Gaming" },
+            { name: "Motorola Razr 50 Ultra", price: "₹95,000", desc: "Foldable flip design, flagship specs, stylish", rating: 4, reviews: 789, badge: "Foldable" },
+            { name: "Samsung Galaxy Z Fold7", price: "₹1,50,000", desc: "Large foldable screen, S Pen support, pro cameras", rating: 5, reviews: 1234, badge: "Foldable" }
+        ];
+
+        // Shopping cart array with localStorage persistence
+        let shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+
+        // Update cart count
+        function updateCartCount() {
+            const cartBadge = document.getElementById('cartBadge');
+            if (cartBadge) {
+                const totalItems = shoppingCart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                cartBadge.textContent = totalItems;
+                cartBadge.style.animation = 'none';
+                setTimeout(() => {
+                    cartBadge.style.animation = 'cartBounce 0.5s ease';
+                }, 10);
+            }
+            // Save to localStorage
+            localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
+        }
+
+        // Add to cart function
+        function addToCart(productName, productPrice, productDesc, productImage) {
+            // Check if product already exists in cart
+            const existingProduct = shoppingCart.find(item => item.name === productName);
+            
+            if (existingProduct) {
+                existingProduct.quantity = (existingProduct.quantity || 1) + 1;
+                showSuccessNotification(`${productName} quantity updated!`);
+            } else {
+                const product = {
+                    name: productName,
+                    price: productPrice,
+                    desc: productDesc,
+                    image: productImage,
+                    quantity: 1,
+                    id: Date.now()
+                };
+                shoppingCart.push(product);
+                showSuccessNotification(`${productName} added to cart!`);
+            }
+            
+            updateCartCount();
+            
+            // Auto-open cart modal after 1 second
+            setTimeout(() => {
+                openCartModal();
+            }, 1000);
+        }
+
+        // Update quantity
+        function updateQuantity(productId, change) {
+            const product = shoppingCart.find(item => item.id === productId);
+            if (product) {
+                product.quantity = (product.quantity || 1) + change;
+                if (product.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCartCount();
+                    renderCart();
+                }
+            }
+        }
+
+        // Remove from cart
+        function removeFromCart(productId) {
+            shoppingCart = shoppingCart.filter(item => item.id !== productId);
+            updateCartCount();
+            renderCart();
+            showNotification('Item removed from cart');
+        }
+
+        // Clear entire cart
+        function clearCart() {
+            if (confirm('Are you sure you want to clear your cart?')) {
+                shoppingCart = [];
+                updateCartCount();
+                renderCart();
+                showNotification('Cart cleared');
+            }
+        }
+
+        // Open cart modal
+        function openCartModal() {
+            const modal = document.getElementById('cartModal');
+            modal.classList.add('active');
+            renderCart();
+        }
+
+        // Close cart modal
+        function closeCartModal() {
+            const modal = document.getElementById('cartModal');
+            modal.classList.remove('active');
+        }
+
+        // Render cart items
+        function renderCart() {
+            const cartBody = document.getElementById('cartModalBody');
+            const cartTotalPrice = document.getElementById('cartTotalPrice');
+            
+            if (shoppingCart.length === 0) {
+                cartBody.innerHTML = `
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-cart" style="font-size: 64px; color: #ccc; margin-bottom: 20px;"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Add some products to get started!</p>
+                    </div>
+                `;
+                cartTotalPrice.textContent = '₹0';
+                return;
+            }
+            
+            let cartHTML = '';
+            let total = 0;
+            let totalItems = 0;
+            
+            shoppingCart.forEach(item => {
+                const quantity = item.quantity || 1;
+                const priceNum = parseInt(item.price.replace(/[^\d]/g, ''));
+                const itemTotal = priceNum * quantity;
+                total += itemTotal;
+                totalItems += quantity;
+                
+                cartHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-desc">${item.desc}</div>
+                            <div class="cart-item-price-row">
+                                <div class="cart-item-price">${item.price} × ${quantity}</div>
+                                <div class="cart-item-total" style="font-weight: bold; color: #007bff;">₹${itemTotal.toLocaleString('en-IN')}</div>
+                            </div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <div class="quantity-controls" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)" style="width: 30px; height: 30px; border: 2px solid #007bff; background: white; color: #007bff; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span class="qty-display" style="min-width: 30px; text-align: center; font-weight: bold;">${quantity}</span>
+                                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)" style="width: 30px; height: 30px; border: 2px solid #007bff; background: white; color: #007bff; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            cartBody.innerHTML = cartHTML;
+            
+            // Format total price with current currency
+            const currency = currencies[currentCurrency];
+            const convertedTotal = total * currency.rate;
+            if (currentCurrency === 'INR') {
+                cartTotalPrice.textContent = `${currency.symbol}${convertedTotal.toLocaleString('en-IN')}`;
+            } else {
+                cartTotalPrice.textContent = `${currency.symbol}${convertedTotal.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+            }
+        }
+
+        // Proceed to checkout
+        function proceedToCheckout() {
+            if (shoppingCart.length === 0) {
+                showNotification('Your cart is empty!');
+                return;
+            }
+            
+            const totalItems = shoppingCart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            const totalPrice = document.getElementById('cartTotalPrice').textContent;
+            
+            closeCartModal();
+            showSuccessNotification(`Proceeding to checkout with ${totalItems} item(s)!`);
+            
+            // Here you would typically redirect to a checkout page
+            setTimeout(() => {
+                alert(`Thank you for shopping at TechVault!\n\n📦 Order Summary:\n• ${totalItems} item(s) in cart\n• Total: ${totalPrice}\n• 10% discount already applied!\n• Free shipping on orders above ₹5,000\n\nThis is a demo - checkout page would open here.`);
+            }, 1500);
+        }
+
+        // Add quick view buttons to first 10 products
+        document.addEventListener('DOMContentLoaded', function() {
+            const productBoxes = document.querySelectorAll('.product-box');
+            productBoxes.forEach((box, index) => {
+                if (index < 10 && !box.querySelector('.product-quick-view-btn')) {
+                    const quickViewBtn = document.createElement('button');
+                    quickViewBtn.className = 'product-quick-view-btn';
+                    quickViewBtn.innerHTML = '<i class="fas fa-eye"></i> Quick View';
+                    quickViewBtn.onclick = function(e) {
+                        e.stopPropagation();
+                        openQuickViewFirst10(index);
+                    };
+                    box.insertBefore(quickViewBtn, box.firstChild);
+                }
+                
+                // Update add to cart buttons for first 10 products
+                const addToCartBtn = box.querySelector('.buy-button');
+                if (addToCartBtn && index < 10) {
+                    addToCartBtn.onclick = function(e) {
+                        e.stopPropagation();
+                        const product = firstTenProducts[index];
+                        const img = box.querySelector('.product-image-real');
+                        addToCart(product.name, product.price, product.desc, img ? img.src : '');
+                    };
+                }
+            });
+            
+            // Cart icon click handler
+            const cartIconBtn = document.getElementById('cartIconBtn');
+            if (cartIconBtn) {
+                cartIconBtn.onclick = function() {
+                    openCartModal();
+                };
+            }
+            
+            // Add to cart button handlers for all products
+            function attachCartHandlers() {
+                document.querySelectorAll('.buy-button').forEach(button => {
+                    // Remove existing listener if any
+                    button.replaceWith(button.cloneNode(true));
+                });
+                
+                document.querySelectorAll('.buy-button').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const productBox = this.closest('.product-box');
+                        if (productBox) {
+                            const productName = productBox.querySelector('h3')?.textContent || 'Product';
+                            const productPrice = productBox.querySelector('.product-price')?.textContent || '₹0';
+                            const productDesc = productBox.querySelector('.product-description')?.textContent || '';
+                            const productImage = productBox.querySelector('.product-image-real')?.src || '';
+                            
+                            addToCart(productName, productPrice, productDesc, productImage);
+                        }
+                    });
+                });
+            }
+            
+            // Initial attachment
+            attachCartHandlers();
+            
+            // Re-attach after a delay to catch dynamically loaded products
+            setTimeout(attachCartHandlers, 1000);
+            setTimeout(attachCartHandlers, 2000);
+            
+            // Watch for new products being added
+            const productGrid = document.querySelector('.product-grid');
+            if (productGrid) {
+                const observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if (mutation.addedNodes.length) {
+                            attachCartHandlers();
+                        }
+                    });
+                });
+                
+                observer.observe(productGrid, {
+                    childList: true,
+                    subtree: true
+                });
+            }
+            
+            // Close cart modal handlers
+            const cartModalClose = document.getElementById('cartModalClose');
+            if (cartModalClose) {
+                cartModalClose.onclick = closeCartModal;
+            }
+            
+            // Close when clicking outside
+            const cartModal = document.getElementById('cartModal');
+            if (cartModal) {
+                cartModal.onclick = function(e) {
+                    if (e.target === cartModal) {
+                        closeCartModal();
+                    }
+                };
+            }
+        });
+
+        // Quick view for first 10 products
+        function openQuickViewFirst10(index) {
+            const product = firstTenProducts[index];
+            const modal = document.getElementById('quickViewModal');
+            const modalBody = document.getElementById('quickViewBody');
+            
+            const stars = Math.floor(product.rating);
+            const hasHalfStar = product.rating % 1 !== 0;
+            let starsHTML = '';
+            for (let i = 0; i < stars; i++) {
+                starsHTML += '<i class="fas fa-star"></i>';
+            }
+            if (hasHalfStar) {
+                starsHTML += '<i class="fas fa-star-half-alt"></i>';
+            }
+            const emptyStars = 5 - Math.ceil(product.rating);
+            for (let i = 0; i < emptyStars; i++) {
+                starsHTML += '<i class="far fa-star"></i>';
+            }
+            
+            const badgeHTML = product.badge ? `<div class="quick-view-badge ${product.badge.toLowerCase().replace(' ', '-')}">${product.badge}</div>` : '';
+            
+            const specs = product.desc.split(', ');
+            let specsHTML = '';
+            specs.forEach((spec, i) => {
+                const labels = ['Processor', 'Camera', 'Feature 1', 'Feature 2', 'Feature 3'];
+                specsHTML += `
+                    <div class="spec-item">
+                        <span class="spec-label">${labels[i] || 'Feature'}</span>
+                        <span class="spec-value">${spec}</span>
+                    </div>
+                `;
+            });
+            
+            const productImage = `https://images.unsplash.com/photo-${index % 2 === 0 ? '1610945415295-d9bbf067e59c' : '1592286927505-2fd0d113e4e7'}?w=600&h=600&fit=crop`;
+            
+            modalBody.innerHTML = `
+                <div class="quick-view-image">
+                    <img src="${productImage}" alt="${product.name}">
+                </div>
+                <div class="quick-view-info">
+                    ${badgeHTML}
+                    <h2>${product.name}</h2>
+                    <div class="quick-view-rating">
+                        ${starsHTML}
+                        <span>${product.rating} (${product.reviews} reviews)</span>
+                    </div>
+                    <div class="quick-view-price">${product.price}</div>
+                    <p class="quick-view-description">${product.desc}</p>
+                    <div class="quick-view-specs">
+                        <h3>Specifications</h3>
+                        ${specsHTML}
+                    </div>
+                    <div class="quick-view-actions">
+                        <button class="quick-view-btn primary" onclick="addToCart('${product.name}', '${product.price}', '${product.desc}', '${productImage}'); closeQuickView();">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <button class="quick-view-btn secondary" onclick="closeQuickView()">
+                            <i class="fas fa-times"></i> Close
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('quickViewModal');
+            if (e.target === modal) {
+                closeQuickView();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeQuickView();
+            }
+        });
+
+        // Close button handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeBtn = document.getElementById('quickViewClose');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeQuickView);
+            }
+        });
+
+        // Show notification function
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 10001;
+                animation: slideIn 0.3s ease;
+                font-weight: 600;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 2000);
+        }
+    </script>
+    <script>
+        // Currency Data
+        const currencies = {
+            'INR': { symbol: '₹', rate: 1, flag: '🇮🇳', name: 'Indian Rupee' },
+            'USD': { symbol: '$', rate: 0.012, flag: '🇺🇸', name: 'US Dollar' },
+            'EUR': { symbol: '€', rate: 0.011, flag: '🇪🇺', name: 'Euro' },
+            'GBP': { symbol: '£', rate: 0.0095, flag: '🇬🇧', name: 'British Pound' },
+            'AUD': { symbol: 'A$', rate: 0.018, flag: '🇦🇺', name: 'Australian Dollar' },
+            'CAD': { symbol: 'C$', rate: 0.016, flag: '🇨🇦', name: 'Canadian Dollar' },
+            'AED': { symbol: 'AED', rate: 0.044, flag: '🇦🇪', name: 'UAE Dirham' },
+            'SGD': { symbol: 'S$', rate: 0.016, flag: '🇸🇬', name: 'Singapore Dollar' }
+        };
+
+        let currentCurrency = 'INR';
+
+        // Format price with currency
+        function formatPrice(priceText) {
+            const priceNum = parseInt(priceText.replace(/[^\d]/g, ''));
+            const currency = currencies[currentCurrency];
+            const convertedPrice = priceNum * currency.rate;
+            
+            if (currentCurrency === 'INR') {
+                return `${currency.symbol}${convertedPrice.toLocaleString('en-IN')}`;
+            } else {
+                return `${currency.symbol}${convertedPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+            }
+        }
+
+        // Update all prices on page
+        function updateAllPrices() {
+            document.querySelectorAll('.product-price').forEach(priceEl => {
+                const originalPrice = priceEl.getAttribute('data-original-price');
+                if (originalPrice) {
+                    priceEl.textContent = formatPrice(originalPrice);
+                }
+            });
+            
+            document.querySelectorAll('.old-price').forEach(priceEl => {
+                const originalPrice = priceEl.getAttribute('data-original-price');
+                if (originalPrice) {
+                    priceEl.textContent = formatPrice(originalPrice);
+                }
+            });
+        }
+
+        // Store original prices
+        function storeOriginalPrices() {
+            document.querySelectorAll('.product-price').forEach(priceEl => {
+                if (!priceEl.getAttribute('data-original-price')) {
+                    priceEl.setAttribute('data-original-price', priceEl.textContent);
+                }
+            });
+            
+            document.querySelectorAll('.old-price').forEach(priceEl => {
+                if (!priceEl.getAttribute('data-original-price')) {
+                    priceEl.setAttribute('data-original-price', priceEl.textContent);
+                }
+            });
+        }
+
+        // Change Currency
+        function changeCurrency(newCurrency) {
+            currentCurrency = newCurrency;
+            localStorage.setItem('selectedCurrency', newCurrency);
+            updateCurrencyDisplay();
+            updateAllPrices();
+            closeCurrencyDropdown();
+            showNotification(`Currency changed to ${currencies[newCurrency].name}`);
+        }
+
+        // Update currency display
+        function updateCurrencyDisplay() {
+            const currencyBtn = document.getElementById('currencyBtn');
+            if (currencyBtn) {
+                const currency = currencies[currentCurrency];
+                currencyBtn.innerHTML = `
+                    <span class="currency-flag">${currency.flag}</span>
+                    <span class="currency-code">${currentCurrency}</span>
+                    <i class="fas fa-chevron-down"></i>
+                `;
+            }
+        }
+
+        // Toggle currency dropdown
+        function toggleCurrencyDropdown() {
+            const dropdown = document.getElementById('currencyDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        // Close currency dropdown
+        function closeCurrencyDropdown() {
+            const dropdown = document.getElementById('currencyDropdown');
+            dropdown.classList.remove('active');
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+                font-weight: 600;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 2000);
+        }
+
+        // Live Search Functionality with Dropdown Suggestions
+        function initializeSearch() {
+            const searchInput = document.getElementById('headerSearchInput');
+            const searchSuggestions = document.getElementById('searchSuggestions');
+            const productBoxes = document.querySelectorAll('.product-box');
+            
+            if (searchInput && searchSuggestions) {
+                searchInput.addEventListener('input', function(e) {
+                    const searchTerm = e.target.value.toLowerCase().trim();
+                    
+                    if (searchTerm === '') {
+                        searchSuggestions.style.display = 'none';
+                        // Show all products
+                        productBoxes.forEach(box => {
+                            box.style.display = '';
+                        });
+                        return;
+                    }
+                    
+                    // Collect matching products
+                    const matches = [];
+                    productBoxes.forEach(box => {
+                        const productName = box.querySelector('h3').textContent;
+                        const productDescription = box.querySelector('.product-description').textContent;
+                        const productPrice = box.querySelector('.product-price').textContent;
+                        const productImage = box.querySelector('.product-image-real').src;
+                        
+                        if (productName.toLowerCase().includes(searchTerm) || 
+                            productDescription.toLowerCase().includes(searchTerm)) {
+                            matches.push({
+                                name: productName,
+                                description: productDescription,
+                                price: productPrice,
+                                image: productImage,
+                                element: box
+                            });
+                        }
+                    });
+                    
+                    // Display suggestions
+                    if (matches.length > 0) {
+                        searchSuggestions.innerHTML = matches.slice(0, 8).map(product => `
+                            <div class="search-suggestion-item" style="display: flex; align-items: center; padding: 12px 15px; border-bottom: 1px solid #f0f0f0; cursor: pointer; transition: background 0.2s;" 
+                                 onmouseover="this.style.background='#f8f9fa'" 
+                                 onmouseout="this.style.background='white'"
+                                 onclick="selectProduct('${product.name.replace(/'/g, "\\'")}')">
+                                <img src="${product.image}" alt="${product.name}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 15px; border: 1px solid #e9ecef;">
+                                <div style="flex: 1;">
+                                    <div style="font-weight: 600; color: #333; font-size: 14px; margin-bottom: 3px;">${product.name}</div>
+                                    <div style="font-size: 12px; color: #666; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${product.description}</div>
+                                </div>
+                                <div style="font-weight: bold; color: #007bff; font-size: 16px; margin-left: 15px;">${product.price}</div>
+                            </div>
+                        `).join('');
+                        
+                        if (matches.length > 8) {
+                            searchSuggestions.innerHTML += `
+                                <div style="padding: 12px 15px; text-align: center; color: #666; font-size: 13px; background: #f8f9fa;">
+                                    +${matches.length - 8} more results
+                                </div>
+                            `;
+                        }
+                        
+                        searchSuggestions.style.display = 'block';
+                    } else {
+                        searchSuggestions.innerHTML = `
+                            <div style="padding: 30px; text-align: center; color: #999;">
+                                <i class="fas fa-search" style="font-size: 32px; margin-bottom: 10px;"></i>
+                                <p>No products found for "${searchTerm}"</p>
+                            </div>
+                        `;
+                        searchSuggestions.style.display = 'block';
+                    }
+                });
+                
+                // Close suggestions when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                        searchSuggestions.style.display = 'none';
+                    }
+                });
+                
+                // Show suggestions when clicking on search input
+                searchInput.addEventListener('focus', function() {
+                    if (searchInput.value.trim() !== '') {
+                        searchInput.dispatchEvent(new Event('input'));
+                    }
+                });
+            }
+        }
+        
+        // Select product from suggestions
+        function selectProduct(productName) {
+            const searchInput = document.getElementById('headerSearchInput');
+            const searchSuggestions = document.getElementById('searchSuggestions');
+            
+            searchInput.value = productName;
+            searchSuggestions.style.display = 'none';
+            
+            // Scroll to the product
+            const productBoxes = document.querySelectorAll('.product-box');
+            productBoxes.forEach(box => {
+                const name = box.querySelector('h3').textContent;
+                if (name === productName) {
+                    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    box.style.animation = 'pulse 1s ease';
+                }
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedCurrency = localStorage.getItem('selectedCurrency');
+            if (savedCurrency && currencies[savedCurrency]) {
+                currentCurrency = savedCurrency;
+            }
+            
+            storeOriginalPrices();
+            updateCurrencyDisplay();
+            updateAllPrices();
+            initializeSearch(); // Initialize search functionality
+            applyDiscount(); // Apply 10% discount to all products
+            updateCartCount(); // Load cart count from localStorage
+            
+            document.addEventListener('click', function(e) {
+                const currencySelector = document.querySelector('.currency-selector');
+                if (currencySelector && !currencySelector.contains(e.target)) {
+                    closeCurrencyDropdown();
+                }
+            });
+        });
+
+        // Apply 10% discount to all products
+        function applyDiscount() {
+            document.querySelectorAll('.product-price').forEach(priceEl => {
+                const priceBox = priceEl.closest('.price-box');
+                
+                // Skip if discount already applied
+                if (priceBox && priceBox.querySelector('.old-price')) {
+                    return;
+                }
+                
+                const priceText = priceEl.textContent.trim();
+                const priceNum = parseInt(priceText.replace(/[^\d]/g, ''));
+                const discountedPrice = Math.round(priceNum * 0.9);
+                
+                if (priceBox) {
+                    // Create old price element
+                    const oldPriceEl = document.createElement('span');
+                    oldPriceEl.className = 'old-price';
+                    oldPriceEl.textContent = priceText;
+                    oldPriceEl.setAttribute('data-original-price', priceText);
+                    
+                    // Update current price
+                    priceEl.textContent = `₹${discountedPrice.toLocaleString('en-IN')}`;
+                    priceEl.setAttribute('data-original-price', `₹${discountedPrice.toLocaleString('en-IN')}`);
+                    
+                    // Create discount badge
+                    const discountEl = document.createElement('span');
+                    discountEl.className = 'discount';
+                    discountEl.textContent = '10% OFF';
+                    
+                    // Insert elements
+                    priceBox.insertBefore(oldPriceEl, priceEl);
+                    priceBox.appendChild(discountEl);
+                }
+            });
+        }
+
+        // Product images mapping - using reliable sources
+        const productImages = {
+            'samsung': 'https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'iphone': 'https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'oneplus': 'https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'xiaomi': 'https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'google': 'https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'oppo': 'https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'vivo': 'https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'realme': 'https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'motorola': 'https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'nothing': 'https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'default': 'https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400'
+        };
+
+        // Get product image based on name
+        function getProductImage(productName) {
+            const name = productName.toLowerCase();
+            if (name.includes('samsung')) return productImages.samsung;
+            if (name.includes('iphone') || name.includes('apple')) return productImages.iphone;
+            if (name.includes('oneplus')) return productImages.oneplus;
+            if (name.includes('xiaomi') || name.includes('redmi') || name.includes('poco')) return productImages.xiaomi;
+            if (name.includes('google') || name.includes('pixel')) return productImages.google;
+            if (name.includes('oppo')) return productImages.oppo;
+            if (name.includes('vivo')) return productImages.vivo;
+            if (name.includes('realme')) return productImages.realme;
+            if (name.includes('motorola')) return productImages.motorola;
+            if (name.includes('nothing')) return productImages.nothing;
+            return productImages.default;
+        }
+
+        // Fix all product images
+        function fixProductImages() {
+            document.querySelectorAll('.product-box').forEach(box => {
+                const img = box.querySelector('.product-image-real');
+                const productName = box.querySelector('h3')?.textContent || '';
+                
+                if (img && productName) {
+                    const newSrc = getProductImage(productName);
+                    img.src = newSrc;
+                    img.onerror = function() {
+                        this.src = 'https://via.placeholder.com/400x300/667eea/ffffff?text=' + encodeURIComponent(productName.substring(0, 20));
+                    };
+                }
+            });
+        }
+
+        // Lazy load images
+        function lazyLoadImages() {
+            const images = document.querySelectorAll('.product-image-real');
+            
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        
+                        // Add loading state
+                        img.style.opacity = '0.5';
+                        
+                        // Load image
+                        const tempImg = new Image();
+                        tempImg.onload = function() {
+                            img.style.opacity = '1';
+                            img.style.transition = 'opacity 0.3s ease';
+                        };
+                        
+                        tempImg.onerror = function() {
+                            // Fallback to placeholder
+                            const productName = img.closest('.product-box')?.querySelector('h3')?.textContent || 'Product';
+                            img.src = 'https://via.placeholder.com/400x300/667eea/ffffff?text=' + encodeURIComponent(productName.substring(0, 20));
+                            img.style.opacity = '1';
+                        };
+                        
+                        tempImg.src = img.src;
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '50px'
+            });
+            
+            images.forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Preload critical images (first 8 products)
+        function preloadCriticalImages() {
+            const criticalImages = document.querySelectorAll('.product-box:nth-child(-n+8) .product-image-real');
+            criticalImages.forEach(img => {
+                const tempImg = new Image();
+                tempImg.src = img.src;
+            });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            fixProductImages();
+            preloadCriticalImages();
+            setTimeout(lazyLoadImages, 500);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sony WH-1000XM5 - Premium Noise Cancelling Headphones | TechVault</title>
+    <link rel="stylesheet" href="style-simple.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .product-detail-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .product-images {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+        
+        .main-image {
+            width: 100%;
+            border: 2px solid #e9ecef;
+            border-radius: 0;
+            margin-bottom: 20px;
+        }
+        
+        .product-details {
+            padding: 20px 0;
+        }
+        
+        .product-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .product-rating-detail {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .rating-stars {
+            color: #ffc107;
+        }
+        
+        .product-price-detail {
+            font-size: 42px;
+            font-weight: bold;
+            color: #f5576c;
+            margin: 20px 0;
+        }
+        
+        .old-price-detail {
+            font-size: 28px;
+            color: #999;
+            text-decoration: line-through;
+            margin-right: 15px;
+        }
+        
+        .discount-badge {
+            background: #28a745;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .product-description-detail {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #666;
+            margin: 30px 0;
+        }
+        
+        .product-features {
+            margin: 30px 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            margin-bottom: 10px;
+            border-left: 4px solid #f5576c;
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            color: #f5576c;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 40px 0;
+        }
+        
+        .btn-buy {
+            flex: 2;
+            padding: 20px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .btn-buy:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn-cart {
+            flex: 1;
+            padding: 20px;
+            background: white;
+            color: #f5576c;
+            border: 2px solid #f5576c;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-cart:hover {
+            background: #f5576c;
+            color: white;
+        }
+        
+        .specs-table {
+            width: 100%;
+            margin: 30px 0;
+            border-collapse: collapse;
+        }
+        
+        .specs-table tr {
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .specs-table td {
+            padding: 15px;
+            font-size: 16px;
+        }
+        
+        .specs-table td:first-child {
+            font-weight: 600;
+            color: #333;
+            width: 40%;
+        }
+        
+        .specs-table td:last-child {
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .product-detail-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 0 20px;
+            }
+            
+            .product-images {
+                position: relative;
+                top: 0;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <header class="header-box">
+            <a href="index-simple.html" style="text-decoration: none; color: inherit;">
+                <div class="logo">
+                    <i class="fas fa-bolt"></i>
+                    <span>TechVault</span>
+                </div>
+            </a>
+            <nav class="nav-box">
+                <a href="index-simple.html"><i class="fas fa-home"></i> Home</a>
+                <a href="about-page.html"><i class="fas fa-info-circle"></i> About</a>
+                <a href="deals.html"><i class="fas fa-fire"></i> Deals</a>
+                <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-button" id="cartButton"><i class="fas fa-shopping-cart"></i><span class="badge" id="cartBadge">0</span></button>
+            </div>
+        </header>
+
+        <!-- Breadcrumb -->
+        <div style="max-width: 1200px; margin: 30px auto; padding: 0 50px;">
+            <div style="color: #666; font-size: 14px;">
+                <a href="index-simple.html" style="color: #666;">Home</a> / 
+                <a href="audio.html" style="color: #666;">Audio</a> / 
+                <span style="color: #333; font-weight: 600;">Sony WH-1000XM5</span>
+            </div>
+        </div>
+
+        <!-- Product Detail -->
+        <div class="product-detail-container">
+            <!-- Product Images -->
+            <div class="product-images">
+                <img src="sony-wh1000xm5.jpg" alt="Sony WH-1000XM5" class="main-image">
+                <div style="display: flex; gap: 10px; justify-content: center;">
+                    <div style="padding: 10px; background: #f8f9fa; text-align: center;">
+                        <i class="fas fa-truck" style="font-size: 24px; color: #f5576c;"></i>
+                        <p style="margin: 5px 0 0 0; font-size: 12px;">Free Shipping</p>
+                    </div>
+                    <div style="padding: 10px; background: #f8f9fa; text-align: center;">
+                        <i class="fas fa-shield-alt" style="font-size: 24px; color: #f5576c;"></i>
+                        <p style="margin: 5px 0 0 0; font-size: 12px;">1 Year Warranty</p>
+                    </div>
+                    <div style="padding: 10px; background: #f8f9fa; text-align: center;">
+                        <i class="fas fa-undo" style="font-size: 24px; color: #f5576c;"></i>
+                        <p style="margin: 5px 0 0 0; font-size: 12px;">7 Day Returns</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-details">
+                <div class="product-badge" style="display: inline-block; background: #f5576c; color: white; padding: 8px 15px; margin-bottom: 15px;">Best Seller</div>
+                
+                <h1 class="product-title">Sony WH-1000XM5 Wireless Noise Cancelling Headphones</h1>
+                
+                <div class="product-rating-detail">
+                    <div class="rating-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span style="color: #666;">4.8 (1,234 reviews)</span>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 15px; margin: 20px 0;">
+                    <span class="old-price-detail">₹29,990</span>
+                    <span class="product-price-detail">₹24,990</span>
+                    <span class="discount-badge">17% OFF</span>
+                </div>
+                
+                <p class="product-description-detail">
+                    Experience industry-leading noise cancellation with the Sony WH-1000XM5. Featuring advanced technology, exceptional sound quality, and all-day comfort, these premium headphones deliver an unparalleled listening experience.
+                </p>
+                
+                <div class="product-features">
+                    <h3 style="margin-bottom: 20px; font-size: 24px;">Key Features</h3>
+                    <div class="feature-item">
+                        <i class="fas fa-volume-mute feature-icon"></i>
+                        <div>
+                            <strong>Industry-Leading Noise Cancellation</strong>
+                            <p style="margin: 5px 0 0 0; color: #666;">Advanced ANC technology blocks out ambient noise</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-battery-full feature-icon"></i>
+                        <div>
+                            <strong>30-Hour Battery Life</strong>
+                            <p style="margin: 5px 0 0 0; color: #666;">All-day listening with quick charging support</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-microphone feature-icon"></i>
+                        <div>
+                            <strong>Crystal Clear Calls</strong>
+                            <p style="margin: 5px 0 0 0; color: #666;">8 microphones for superior call quality</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-music feature-icon"></i>
+                        <div>
+                            <strong>Premium Sound Quality</strong>
+                            <p style="margin: 5px 0 0 0; color: #666;">LDAC support for Hi-Res audio streaming</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn-buy" onclick="buyNow()">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                    <button class="btn-cart" onclick="addToCartFromDetail()">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+                
+                <div style="margin: 30px 0;">
+                    <h3 style="margin-bottom: 20px; font-size: 24px;">Technical Specifications</h3>
+                    <table class="specs-table">
+                        <tr>
+                            <td>Brand</td>
+                            <td>Sony</td>
+                        </tr>
+                        <tr>
+                            <td>Model</td>
+                            <td>WH-1000XM5</td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td>Over-Ear Wireless Headphones</td>
+                        </tr>
+                        <tr>
+                            <td>Noise Cancellation</td>
+                            <td>Yes (Industry-Leading ANC)</td>
+                        </tr>
+                        <tr>
+                            <td>Battery Life</td>
+                            <td>30 hours (ANC On)</td>
+                        </tr>
+                        <tr>
+                            <td>Charging</td>
+                            <td>USB-C, Quick Charge (3 min = 3 hours)</td>
+                        </tr>
+                        <tr>
+                            <td>Bluetooth</td>
+                            <td>5.2 with Multipoint Connection</td>
+                        </tr>
+                        <tr>
+                            <td>Audio Codec</td>
+                            <td>LDAC, AAC, SBC</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td>250g</td>
+                        </tr>
+                        <tr>
+                            <td>Warranty</td>
+                            <td>1 Year Manufacturer Warranty</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer-box">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-bolt"></i> TechVault</h3>
+                    <p>Your trusted destination for quality electronics at unbeatable prices.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TechVault. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Update cart badge
+        function updateCartBadge() {
+            const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            const cartBadge = document.getElementById('cartBadge');
+            if (cartBadge) {
+                const totalItems = shoppingCart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                cartBadge.textContent = totalItems;
+            }
+        }
+
+        // Add to cart
+        function addToCartFromDetail() {
+            let shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            
+            const product = {
+                name: 'Sony WH-1000XM5',
+                price: '₹24,990',
+                desc: 'Industry-leading noise cancelling, 30hr battery',
+                image: 'sony-wh1000xm5.jpg',
+                quantity: 1,
+                id: Date.now()
+            };
+            
+            const existingProduct = shoppingCart.find(item => item.name === product.name);
+            if (existingProduct) {
+                existingProduct.quantity = (existingProduct.quantity || 1) + 1;
+            } else {
+                shoppingCart.push(product);
+            }
+            
+            localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
+            updateCartBadge();
+            
+            // Show notification
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 10000;
+                font-weight: 600;
+            `;
+            notification.textContent = 'Added to cart!';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.remove(), 2000);
+        }
+
+        // Buy now
+        function buyNow() {
+            addToCartFromDetail();
+            setTimeout(() => {
+                alert('🎉 Proceeding to checkout!\n\nSony WH-1000XM5\nPrice: ₹24,990\n\nThis is a demo - checkout page would open here.');
+            }, 500);
+        }
+
+        // Initialize
+        updateCartBadge();
+    </script>
+</body>
+</html>

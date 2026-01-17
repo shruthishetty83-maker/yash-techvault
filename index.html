@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechZone - Electronics Store Bengaluru</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Search Bar -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search for products..." autocomplete="off">
+            <button class="search-close" id="searchClose"><i class="fas fa-times"></i></button>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Navigation - Header Box -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <div class="logo">
+                    <i class="fas fa-bolt"></i>
+                    <span>TechVault Bengaluru</span>
+                </div>
+            </a>
+            <!-- Mega Search in Header -->
+            <div class="navbar-search">
+                <input type="text" id="navbarSearchInput" placeholder="Search for wireless earbuds, laptops, phones..." autocomplete="off">
+                <button class="navbar-search-btn" id="navbarSearchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <div class="currency-selector">
+                    <button class="currency-btn" id="currencyBtn" onclick="toggleCurrencyDropdown()">
+                        <span class="currency-flag">🇮🇳</span>
+                        <span class="currency-code">INR</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="currency-dropdown" id="currencyDropdown">
+                        <div class="currency-option" onclick="changeCurrency('INR')">
+                            <span class="currency-flag">🇮🇳</span>
+                            <div class="currency-info">
+                                <span class="currency-code">INR ₹</span>
+                                <span class="currency-name">India</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('USD')">
+                            <span class="currency-flag">🇺🇸</span>
+                            <div class="currency-info">
+                                <span class="currency-code">US $</span>
+                                <span class="currency-name">United States</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('EUR')">
+                            <span class="currency-flag">🇪🇺</span>
+                            <div class="currency-info">
+                                <span class="currency-code">EUR €</span>
+                                <span class="currency-name">Europe</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('GBP')">
+                            <span class="currency-flag">🇬🇧</span>
+                            <div class="currency-info">
+                                <span class="currency-code">GBP £</span>
+                                <span class="currency-name">United Kingdom</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('AUD')">
+                            <span class="currency-flag">🇦🇺</span>
+                            <div class="currency-info">
+                                <span class="currency-code">AU $</span>
+                                <span class="currency-name">Australia</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('CAD')">
+                            <span class="currency-flag">🇨🇦</span>
+                            <div class="currency-info">
+                                <span class="currency-code">CA $</span>
+                                <span class="currency-name">Canada</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('AED')">
+                            <span class="currency-flag">🇦🇪</span>
+                            <div class="currency-info">
+                                <span class="currency-code">AED</span>
+                                <span class="currency-name">UAE</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('SGD')">
+                            <span class="currency-flag">🇸🇬</span>
+                            <div class="currency-info">
+                                <span class="currency-code">SG $</span>
+                                <span class="currency-name">Singapore</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="search-icon" id="searchIcon">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider Box -->
+    <section id="home" class="hero">
+        <div class="hero-slider">
+            <!-- Slide 1 -->
+            <div class="hero-slide hero-slide-1 active">
+                <div class="hero-slide-content">
+                    <h1>Premium Headphones</h1>
+                    <p>Up to 50% OFF on Audio Devices</p>
+                    <a href="products.html" class="cta-button">Shop Now</a>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="hero-slide hero-slide-2">
+                <div class="hero-slide-content">
+                    <h1>Latest Smartphones</h1>
+                    <p>5G Phones Starting at ₹8,999</p>
+                    <a href="products.html" class="cta-button">Shop Now</a>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="hero-slide hero-slide-3">
+                <div class="hero-slide-content">
+                    <h1>Student Laptops</h1>
+                    <p>Special Discounts for Students</p>
+                    <a href="products.html" class="cta-button">Shop Now</a>
+                </div>
+            </div>
+        </div>
+        <!-- Slider Dots -->
+        <div class="hero-dots">
+            <span class="hero-dot active" data-slide="0"></span>
+            <span class="hero-dot" data-slide="1"></span>
+            <span class="hero-dot" data-slide="2"></span>
+        </div>
+    </section>
+
+    <!-- Promo Boxes Row -->
+    <section class="promo-boxes">
+        <div class="container">
+            <div class="promo-grid">
+                <div class="promo-box">
+                    <div class="promo-box-content">
+                        <div class="promo-icon">📱</div>
+                        <h3>50% OFF Phones</h3>
+                        <p>Latest 5G smartphones at unbeatable prices</p>
+                        <a href="products.html" class="promo-btn">Explore</a>
+                    </div>
+                </div>
+                <div class="promo-box">
+                    <div class="promo-box-content">
+                        <div class="promo-icon">🎧</div>
+                        <h3>Audio Deals</h3>
+                        <p>Premium headphones & earbuds on sale</p>
+                        <a href="products.html" class="promo-btn">Explore</a>
+                    </div>
+                </div>
+                <div class="promo-box">
+                    <div class="promo-box-content">
+                        <div class="promo-icon">💻</div>
+                        <h3>Student Laptops</h3>
+                        <p>Special discounts with student ID</p>
+                        <a href="products.html" class="promo-btn">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="trust-badges">
+        <div class="container">
+            <div class="badges-grid">
+                <div class="badge-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>100% Genuine Products</span>
+                </div>
+                <div class="badge-item">
+                    <i class="fas fa-shipping-fast"></i>
+                    <span>Fast Delivery</span>
+                </div>
+                <div class="badge-item">
+                    <i class="fas fa-undo"></i>
+                    <span>7-Day Returns</span>
+                </div>
+                <div class="badge-item">
+                    <i class="fas fa-lock"></i>
+                    <span>Secure Payment</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Row with Icons -->
+    <section class="categories-row">
+        <div class="container">
+            <h2>Shop by Category</h2>
+            <div class="categories-horizontal">
+                <div class="category-box" onclick="window.location.href='products.html'">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h4>Mobiles</h4>
+                </div>
+                <div class="category-box" onclick="window.location.href='products.html'">
+                    <i class="fas fa-laptop"></i>
+                    <h4>Laptops</h4>
+                </div>
+                <div class="category-box" onclick="window.location.href='products.html'">
+                    <i class="fas fa-headphones"></i>
+                    <h4>Audio</h4>
+                </div>
+                <div class="category-box" onclick="window.location.href='products.html'">
+                    <i class="fas fa-camera"></i>
+                    <h4>Cameras</h4>
+                </div>
+                <div class="category-box" onclick="window.location.href='products.html'">
+                    <i class="fas fa-gamepad"></i>
+                    <h4>Gaming</h4>
+                </div>
+                <div class="category-box" onclick="window.location.href='products.html'">
+                    <i class="fas fa-plug"></i>
+                    <h4>Accessories</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2>🔥 Best Sellers</h2>
+            <p style="text-align: center; font-size: 18px; color: var(--text-color); margin-bottom: 40px;">Top picks loved by students in Bengaluru</p>
+            <div class="products-grid featured-grid" id="productsGrid">
+                <!-- Top 6 products will be loaded here -->
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="products.html" class="cta-button" style="text-decoration: none; display: inline-block;">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers Banner -->
+    <section class="special-offers">
+        <div class="container">
+            <h2>🔥 Limited Time Offers!</h2>
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <div class="offer-badge">50% OFF</div>
+                    <h3>Student Special</h3>
+                    <p>Show your student ID and get 50% off on all laptops!</p>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-badge">FREE</div>
+                    <h3>Free Delivery</h3>
+                    <p>Free home delivery across Bengaluru for orders above ₹5,000</p>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-badge">NEW</div>
+                    <h3>Trade-In Program</h3>
+                    <p>Exchange your old gadgets and get instant discounts!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Got amazing headphones at half price! Super fast delivery in Bengaluru."</p>
+                    <h4>- Rahul, Student</h4>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Best place for affordable tech! Helped me get a laptop for my studies."</p>
+                    <h4>- Priya, College Student</h4>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Quality products and great customer service. Highly recommended!"</p>
+                    <h4>- Arjun, Tech Enthusiast</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Why Choose TechZone?</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><strong>🎓 Student-Friendly Prices:</strong> We understand student budgets. Get up to 50% off with your student ID!</p>
+                    <p><strong>⚡ Fast Delivery:</strong> Same-day delivery across Bengaluru. Order before 2 PM and get it today!</p>
+                    <p><strong>💯 100% Genuine:</strong> All products come with manufacturer warranty. No fakes, ever.</p>
+                    <p><strong>🔄 Easy Returns:</strong> Changed your mind? Return within 7 days, no questions asked.</p>
+                    <p><strong>📍 Local Pickup:</strong> 50+ pickup points across Bengaluru - Koramangala, Indiranagar, Jayanagar & more!</p>
+                    <div style="margin-top: 30px;">
+                        <a href="about.html" class="cta-button" style="text-decoration: none; display: inline-block; background: var(--secondary-gradient);">Learn More About Us</a>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="about-icon">🚀</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="text" placeholder="Subject" required>
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3>Pickup Locations in Bengaluru</h3>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Koramangala - Near Schools</p>
+                    </div>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Indiranagar - Student Hub</p>
+                    </div>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Jayanagar - College Area</p>
+                    </div>
+                    <div class="contact-details">
+                        <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                        <p><i class="fas fa-envelope"></i> hello@techzone.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>📧 Get Exclusive Deals!</h2>
+            <p>Subscribe to our newsletter and never miss amazing offers</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TechZone</h3>
+                    <p>Your trusted electronics store in Bengaluru. Making technology accessible to everyone!</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="products.html">Audio Devices</a></li>
+                        <li><a href="products.html">Mobile Phones</a></li>
+                        <li><a href="products.html">Laptops</a></li>
+                        <li><a href="products.html">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TechVault Bengaluru. Making tech affordable for students! 🎓</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

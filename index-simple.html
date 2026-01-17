@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechVault - Premium Electronics Store</title>
+    <link rel="stylesheet" href="style-simple.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="performance-utils.js" defer></script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header Box -->
+        <header class="header-box">
+            <a href="index-simple.html" style="text-decoration: none; color: inherit; cursor: pointer;">
+                <div class="logo">
+                    <i class="fas fa-bolt"></i>
+                    <span>TechVault</span>
+                </div>
+            </a>
+            <div class="header-search" style="position: relative;">
+                <input type="text" id="headerSearchInput" placeholder="Search for products, brands, categories..." autocomplete="off">
+                <button class="search-btn" id="headerSearchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div id="searchSuggestions" style="display: none; position: absolute; top: 100%; left: 0; right: 50px; background: white; border: 2px solid #e9ecef; max-height: 400px; overflow-y: auto; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></div>
+            </div>
+            <nav class="nav-box">
+                <a href="index-simple.html"><i class="fas fa-home"></i> Home</a>
+                <a href="about-page.html"><i class="fas fa-info-circle"></i> About</a>
+                <a href="deals.html"><i class="fas fa-fire"></i> Deals</a>
+                <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+            </nav>
+            <div class="header-actions">
+                <div class="currency-selector">
+                    <button class="currency-btn" id="currencyBtn" onclick="toggleCurrencyDropdown()">
+                        <span class="currency-flag">🇮🇳</span>
+                        <span class="currency-code">INR</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="currency-dropdown" id="currencyDropdown">
+                        <div class="currency-option" onclick="changeCurrency('INR')">
+                            <span class="currency-flag">🇮🇳</span>
+                            <div class="currency-info">
+                                <span class="currency-code">INR ₹</span>
+                                <span class="currency-name">India</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('USD')">
+                            <span class="currency-flag">🇺🇸</span>
+                            <div class="currency-info">
+                                <span class="currency-code">US $</span>
+                                <span class="currency-name">United States</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('EUR')">
+                            <span class="currency-flag">🇪🇺</span>
+                            <div class="currency-info">
+                                <span class="currency-code">EUR €</span>
+                                <span class="currency-name">Europe</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('GBP')">
+                            <span class="currency-flag">🇬🇧</span>
+                            <div class="currency-info">
+                                <span class="currency-code">GBP £</span>
+                                <span class="currency-name">United Kingdom</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('AUD')">
+                            <span class="currency-flag">🇦🇺</span>
+                            <div class="currency-info">
+                                <span class="currency-code">AU $</span>
+                                <span class="currency-name">Australia</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('CAD')">
+                            <span class="currency-flag">🇨🇦</span>
+                            <div class="currency-info">
+                                <span class="currency-code">CA $</span>
+                                <span class="currency-name">Canada</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('AED')">
+                            <span class="currency-flag">🇦🇪</span>
+                            <div class="currency-info">
+                                <span class="currency-code">AED</span>
+                                <span class="currency-name">UAE</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('SGD')">
+                            <span class="currency-flag">🇸🇬</span>
+                            <div class="currency-info">
+                                <span class="currency-code">SG $</span>
+                                <span class="currency-name">Singapore</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="icon-button"><i class="fas fa-search"></i></button>
+                <button class="icon-button" id="cartButton"><i class="fas fa-shopping-cart"></i><span class="badge" id="cartBadge">0</span></button>
+            </div>
+        </header>
+
+        <!-- Sliding Banner Section -->
+        <section class="sliding-banner">
+            <div class="banner-slider">
+                <!-- Slide 1 -->
+                <div class="banner-slide active">
+                    <div class="banner-content">
+                        <h2>Latest Smartphones</h2>
+                        <p>5G Phones Starting at ₹8,999</p>
+                        <button class="banner-button">Shop Now</button>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="banner-slide">
+                    <div class="banner-content">
+                        <h2>Premium Headphones</h2>
+                        <p>Wireless Audio Starting at ₹999</p>
+                        <button class="banner-button">Shop Now</button>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="banner-slide">
+                    <div class="banner-content">
+                        <h2>Gaming Laptops</h2>
+                        <p>High Performance from ₹49,999</p>
+                        <button class="banner-button">Shop Now</button>
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="banner-slide">
+                    <div class="banner-content">
+                        <h2>Free Shipping</h2>
+                        <p>On All Orders Above ₹5,000</p>
+                        <button class="banner-button">Learn More</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Slider Dots -->
+            <div class="banner-dots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+                <span class="dot" data-slide="3"></span>
+            </div>
+        </section>
+
+        <!-- Hero Box -->
+        <section class="hero-box">
+            <div class="hero-content">
+                <span class="hero-badge">🔥 Hot Deals</span>
+                <h1>Discover Amazing Electronics</h1>
+                <p>Get the latest gadgets at unbeatable prices. Free shipping on orders above ₹5,000</p>
+                <div class="hero-buttons">
+                    <button class="cta-button primary" onclick="window.location.href='mobiles.html'">Shop Now</button>
+                    <button class="cta-button secondary" onclick="window.location.href='deals.html'">View Deals</button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-box">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <strong>5000+</strong>
+                            <span>Happy Customers</span>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fas fa-star"></i>
+                        <div>
+                            <strong>4.8/5</strong>
+                            <span>Rating</span>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fas fa-shipping-fast"></i>
+                        <div>
+                            <strong>Fast</strong>
+                            <span>Delivery</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image-box">
+                <div class="floating-badge">50% OFF</div>
+                <div class="hero-image">
+                    <div class="device-icon">🎧</div>
+                    <div class="device-icon">📱</div>
+                    <div class="device-icon">💻</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Box -->
+        <section class="categories-box">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="categories-grid">
+                <div class="category-card" onclick="window.location.href='audio.html'">
+                    <i class="fas fa-headphones"></i>
+                    <h3>Audio</h3>
+                    <p>200+ Products</p>
+                </div>
+                <div class="category-card" onclick="window.location.href='mobiles.html'">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobiles</h3>
+                    <p>150+ Products</p>
+                </div>
+                <div class="category-card" onclick="window.location.href='laptops.html'">
+                    <i class="fas fa-laptop"></i>
+                    <h3>Laptops</h3>
+                    <p>100+ Products</p>
+                </div>
+                <div class="category-card" onclick="window.location.href='cameras.html'">
+                    <i class="fas fa-camera"></i>
+                    <h3>Cameras</h3>
+                    <p>80+ Products</p>
+                </div>
+                <div class="category-card" onclick="window.location.href='gaming.html'">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Gaming</h3>
+                    <p>120+ Products</p>
+                </div>
+                <div class="category-card" onclick="window.location.href='tvs.html'">
+                    <i class="fas fa-tv"></i>
+                    <h3>TVs</h3>
+                    <p>60+ Products</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Box -->
+        <section class="products-box" id="products">
+            <div class="section-header">
+                <h2 class="section-title">Featured Products</h2>
+                <div class="filter-tabs">
+                    <button class="tab active">All</button>
+                    <button class="tab">Audio</button>
+                    <button class="tab">Mobiles</button>
+                    <button class="tab">Laptops</button>
+                </div>
+            </div>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-box" onclick="window.location.href='product-sony-wh1000xm5.html'" style="cursor: pointer;">
+                    <div class="product-badge">Best Seller</div>
+                    <div class="product-image-box">
+                        <img src="sony-wh1000xm5.jpg" alt="Sony WH-1000XM5" class="product-image-real">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(1,234)</span>
+                        </div>
+                        <h3>Sony WH-1000XM5</h3>
+                        <p class="product-description">Industry-leading noise cancelling, 30hr battery</p>
+                        <div class="price-box">
+                            <span class="old-price">₹29,990</span>
+                            <span class="product-price">₹24,990</span>
+                            <span class="discount">17% OFF</span>
+                        </div>
+                        <button class="buy-button" onclick="event.stopPropagation(); addToCart('Sony WH-1000XM5', '₹24,990', 'Industry-leading noise cancelling, 30hr battery', 'sony-wh1000xm5.jpg')"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-box">
+                    <div class="product-badge hot">Hot Deal</div>
+                    <div class="product-image-box">
+                        <img src="https://images.unsplash.com/photo-1592286927505-2fd0d113e4e7?w=400&h=300&fit=crop" alt="MacBook Air M2" class="product-image-real">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(456)</span>
+                        </div>
+                        <h3>Apple MacBook Air M2</h3>
+                        <p class="product-description">13.6" Liquid Retina, 8GB RAM, 256GB SSD</p>
+                        <div class="price-box">
+                            <span class="old-price">₹1,19,900</span>
+                            <span class="product-price">₹99,990</span>
+                            <span class="discount">17% OFF</span>
+                        </div>
+                        <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-box">
+                    <div class="product-badge new">New Arrival</div>
+                    <div class="product-image-box">
+                        <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400&h=300&fit=crop" alt="MacBook Pro 14" class="product-image-real">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(289)</span>
+                        </div>
+                        <h3>Apple MacBook Pro 14" M3</h3>
+                        <p class="product-description">M3 chip, 16GB RAM, 512GB SSD</p>
+                        <div class="price-box">
+                            <span class="product-price">₹1,69,900</span>
+                        </div>
+                        <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-box">
+                    <div class="product-image-box">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=300&fit=crop" alt="Dell XPS 15" class="product-image-real">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(342)</span>
+                        </div>
+                        <h3>Dell XPS 15</h3>
+                        <p class="product-description">Intel i7, 16GB RAM, 512GB SSD, RTX 4050</p>
+                        <div class="price-box">
+                            <span class="old-price">₹1,89,990</span>
+                            <span class="product-price">₹1,64,990</span>
+                            <span class="discount">13% OFF</span>
+                        </div>
+                        <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-box">
+                    <div class="product-badge">Best Value</div>
+                    <div class="product-image-box">
+                        <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=300&fit=crop" alt="Acer Aspire 5" class="product-image-real">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(178)</span>
+                        </div>
+                        <h3>Acer Aspire 5</h3>
+                        <p class="product-description">Intel i5, 8GB RAM, 512GB SSD, 15.6" FHD</p>
+                        <div class="price-box">
+                            <span class="old-price">₹54,990</span>
+                            <span class="product-price">₹42,990</span>
+                            <span class="discount">22% OFF</span>
+                        </div>
+                        <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-box">
+                    <div class="product-image-box">
+                        <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400&h=300&fit=crop" alt="Dell Inspiron 15" class="product-image-real">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(245)</span>
+                        </div>
+                        <h3>Dell Inspiron 15</h3>
+                        <p class="product-description">AMD Ryzen 5, 8GB RAM, 512GB SSD</p>
+                        <div class="price-box">
+                            <span class="old-price">₹52,990</span>
+                            <span class="product-price">₹44,990</span>
+                            <span class="discount">15% OFF</span>
+                        </div>
+                        <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-box">
+                    <div class="product-badge hot">Gaming</div>
+                    <div class="product-image-box">
+                        <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400&h=300&fit=crop" alt="Acer Predator Helios" class="product-image-real">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(156)</span>
+                        </div>
+                        <h3>Acer Predator Helios 300</h3>
+                        <p class="product-description">Intel i7, 16GB RAM, RTX 4060, 144Hz</p>
+                        <div class="price-box">
+                            <span class="old-price">₹1,29,990</span>
+                            <span class="product-price">₹1,09,990</span>
+                            <span class="discount">15% OFF</span>
+                        </div>
+                        <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-box">
+                    <div class="product-image-box">
+                        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=300&fit=crop" alt="Dell Latitude 14" class="product-image-real">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(198)</span>
+                        </div>
+                        <h3>Dell Latitude 14</h3>
+                        <p class="product-description">Intel i5, 8GB RAM, 256GB SSD, Business</p>
+                        <div class="price-box">
+                            <span class="old-price">₹64,990</span>
+                            <span class="product-price">₹54,990</span>
+                            <span class="discount">15% OFF</span>
+                        </div>
+                        <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 9 -->
+                <div class="product-box">
+                    <div class="product-badge new">New</div>
+                    <div class="product-image-box">
+                        <img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=400&h=300&fit=crop" alt="Acer Swift 3" class="product-image-real">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(223)</span>
+                        </div>
+                        <h3>Acer Swift 3</h3>
+                        <p class="product-description">AMD Ryzen 7, 16GB RAM, 512GB SSD</p>
+                        <div class="price-box">
+                            <span class="old-price">₹69,990</span>
+                            <span class="product-price">₹59,990</span>
+                            <span class="discount">14% OFF</span>
+                        </div>
+                        <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Box -->
+        <section class="trust-box">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>100% Genuine</h3>
+                    <p>All products are authentic</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-truck"></i>
+                    <h3>Free Shipping</h3>
+                    <p>On orders above ₹5,000</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-undo"></i>
+                    <h3>Easy Returns</h3>
+                    <p>7-day return policy</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Always here to help</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Box -->
+        <footer class="footer-box">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-bolt"></i> TechVault</h3>
+                    <p>Your trusted destination for quality electronics at unbeatable prices.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index-simple.html">Home</a>
+                    <a href="about-page.html">About</a>
+                    <a href="deals.html">Deals</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Track Order</a>
+                    <a href="#">Returns</a>
+                    <a href="#">Shipping Info</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> hello@TechVault.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Bengaluru, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TechVault. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Currency Data
+        const currencies = {
+            'INR': { symbol: '₹', rate: 1, flag: '🇮🇳', name: 'Indian Rupee' },
+            'USD': { symbol: '$', rate: 0.012, flag: '🇺🇸', name: 'US Dollar' },
+            'EUR': { symbol: '€', rate: 0.011, flag: '🇪🇺', name: 'Euro' },
+            'GBP': { symbol: '£', rate: 0.0095, flag: '🇬🇧', name: 'British Pound' },
+            'AUD': { symbol: 'A$', rate: 0.018, flag: '🇦🇺', name: 'Australian Dollar' },
+            'CAD': { symbol: 'C$', rate: 0.016, flag: '🇨🇦', name: 'Canadian Dollar' },
+            'AED': { symbol: 'AED', rate: 0.044, flag: '🇦🇪', name: 'UAE Dirham' },
+            'SGD': { symbol: 'S$', rate: 0.016, flag: '🇸🇬', name: 'Singapore Dollar' }
+        };
+
+        let currentCurrency = 'INR';
+
+        // Format price with currency
+        function formatPrice(priceText) {
+            // Extract number from price text like "₹24,990"
+            const priceNum = parseInt(priceText.replace(/[^\d]/g, ''));
+            const currency = currencies[currentCurrency];
+            const convertedPrice = priceNum * currency.rate;
+            
+            if (currentCurrency === 'INR') {
+                return `${currency.symbol}${convertedPrice.toLocaleString('en-IN')}`;
+            } else {
+                return `${currency.symbol}${convertedPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+            }
+        }
+
+        // Update all prices on page
+        function updateAllPrices() {
+            document.querySelectorAll('.product-price').forEach(priceEl => {
+                const originalPrice = priceEl.getAttribute('data-original-price');
+                if (originalPrice) {
+                    priceEl.textContent = formatPrice(originalPrice);
+                }
+            });
+            
+            document.querySelectorAll('.old-price').forEach(priceEl => {
+                const originalPrice = priceEl.getAttribute('data-original-price');
+                if (originalPrice) {
+                    priceEl.textContent = formatPrice(originalPrice);
+                }
+            });
+        }
+
+        // Store original prices
+        function storeOriginalPrices() {
+            document.querySelectorAll('.product-price').forEach(priceEl => {
+                if (!priceEl.getAttribute('data-original-price')) {
+                    priceEl.setAttribute('data-original-price', priceEl.textContent);
+                }
+            });
+            
+            document.querySelectorAll('.old-price').forEach(priceEl => {
+                if (!priceEl.getAttribute('data-original-price')) {
+                    priceEl.setAttribute('data-original-price', priceEl.textContent);
+                }
+            });
+        }
+
+        // Change Currency
+        function changeCurrency(newCurrency) {
+            currentCurrency = newCurrency;
+            localStorage.setItem('selectedCurrency', newCurrency);
+            updateCurrencyDisplay();
+            updateAllPrices();
+            closeCurrencyDropdown();
+            showNotification(`Currency changed to ${currencies[newCurrency].name}`);
+        }
+
+        // Update currency display
+        function updateCurrencyDisplay() {
+            const currencyBtn = document.getElementById('currencyBtn');
+            if (currencyBtn) {
+                const currency = currencies[currentCurrency];
+                currencyBtn.innerHTML = `
+                    <span class="currency-flag">${currency.flag}</span>
+                    <span class="currency-code">${currentCurrency}</span>
+                    <i class="fas fa-chevron-down"></i>
+                `;
+            }
+        }
+
+        // Toggle currency dropdown
+        function toggleCurrencyDropdown() {
+            const dropdown = document.getElementById('currencyDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        // Close currency dropdown
+        function closeCurrencyDropdown() {
+            const dropdown = document.getElementById('currencyDropdown');
+            dropdown.classList.remove('active');
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+                font-weight: 600;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 2000);
+        }
+
+        // Live Search Functionality with Dropdown Suggestions (OPTIMIZED)
+        function initializeSearch() {
+            const searchInput = document.getElementById('headerSearchInput');
+            const searchSuggestions = document.getElementById('searchSuggestions');
+            const productBoxes = document.querySelectorAll('.product-box');
+            
+            if (searchInput && searchSuggestions) {
+                // Debounced search for better performance
+                const debouncedSearch = debounce(function(searchTerm) {
+                    if (searchTerm === '') {
+                        searchSuggestions.style.display = 'none';
+                        productBoxes.forEach(box => {
+                            box.style.display = '';
+                        });
+                        return;
+                    }
+                    
+                    // Collect matching products (optimized)
+                    const matches = [];
+                    const searchLower = searchTerm.toLowerCase();
+                    
+                    for (let i = 0; i < productBoxes.length && matches.length < 8; i++) {
+                        const box = productBoxes[i];
+                        const productName = box.querySelector('h3').textContent;
+                        const productDescription = box.querySelector('.product-description').textContent;
+                        
+                        if (productName.toLowerCase().includes(searchLower) || 
+                            productDescription.toLowerCase().includes(searchLower)) {
+                            matches.push({
+                                name: productName,
+                                description: productDescription,
+                                price: box.querySelector('.product-price').textContent,
+                                image: box.querySelector('.product-image-real').src,
+                                element: box
+                            });
+                        }
+                    }
+                    
+                    // Display suggestions (batch DOM update)
+                    if (matches.length > 0) {
+                        const suggestionsHTML = matches.map(product => `
+                            <div class="search-suggestion-item" style="display: flex; align-items: center; padding: 12px 15px; border-bottom: 1px solid #f0f0f0; cursor: pointer; transition: background 0.2s;" 
+                                 onmouseover="this.style.background='#f8f9fa'" 
+                                 onmouseout="this.style.background='white'"
+                                 onclick="selectProduct('${product.name.replace(/'/g, "\\'")}')">
+                                <img src="${product.image}" alt="${product.name}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 15px; border: 1px solid #e9ecef;">
+                                <div style="flex: 1;">
+                                    <div style="font-weight: 600; color: #333; font-size: 14px; margin-bottom: 3px;">${product.name}</div>
+                                    <div style="font-size: 12px; color: #666; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${product.description}</div>
+                                </div>
+                                <div style="font-weight: bold; color: #007bff; font-size: 16px; margin-left: 15px;">${product.price}</div>
+                            </div>
+                        `).join('');
+                        
+                        searchSuggestions.innerHTML = suggestionsHTML;
+                        searchSuggestions.style.display = 'block';
+                    } else {
+                        searchSuggestions.innerHTML = `
+                            <div style="padding: 30px; text-align: center; color: #999;">
+                                <i class="fas fa-search" style="font-size: 32px; margin-bottom: 10px;"></i>
+                                <p>No products found for "${searchTerm}"</p>
+                            </div>
+                        `;
+                        searchSuggestions.style.display = 'block';
+                    }
+                }, 300); // 300ms debounce
+                
+                searchInput.addEventListener('input', function(e) {
+                    debouncedSearch(e.target.value.toLowerCase().trim());
+                });
+                
+                // Close suggestions when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                        searchSuggestions.style.display = 'none';
+                    }
+                });
+                
+                // Show suggestions when clicking on search input
+                searchInput.addEventListener('focus', function() {
+                    if (searchInput.value.trim() !== '') {
+                        searchInput.dispatchEvent(new Event('input'));
+                    }
+                });
+            }
+        }
+        
+        // Debounce utility function
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+        
+        // Select product from suggestions
+        function selectProduct(productName) {
+            const searchInput = document.getElementById('headerSearchInput');
+            const searchSuggestions = document.getElementById('searchSuggestions');
+            
+            searchInput.value = productName;
+            searchSuggestions.style.display = 'none';
+            
+            // Scroll to the product
+            const productBoxes = document.querySelectorAll('.product-box');
+            productBoxes.forEach(box => {
+                const name = box.querySelector('h3').textContent;
+                if (name === productName) {
+                    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    box.style.animation = 'pulse 1s ease';
+                }
+            });
+        }
+
+        // Update cart badge from localStorage
+        function updateCartBadge() {
+            const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            const cartBadge = document.getElementById('cartBadge');
+            if (cartBadge) {
+                const totalItems = shoppingCart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                cartBadge.textContent = totalItems;
+            }
+        }
+
+        // Add to cart function for homepage
+        function addToCart(productName, productPrice, productDesc, productImage) {
+            let shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            
+            // Check if product already exists in cart
+            const existingProduct = shoppingCart.find(item => item.name === productName);
+            
+            if (existingProduct) {
+                existingProduct.quantity = (existingProduct.quantity || 1) + 1;
+            } else {
+                const product = {
+                    name: productName,
+                    price: productPrice,
+                    desc: productDesc,
+                    image: productImage,
+                    quantity: 1,
+                    id: Date.now()
+                };
+                shoppingCart.push(product);
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
+            updateCartBadge();
+            
+            // Show notification
+            showNotification(`${productName} added to cart!`);
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+                font-weight: 600;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 1500);
+        }
+
+        // Attach cart handlers to all buy buttons
+        function attachCartHandlers() {
+            document.querySelectorAll('.buy-button').forEach(button => {
+                button.onclick = function(e) {
+                    e.preventDefault();
+                    const productBox = this.closest('.product-box');
+                    if (productBox) {
+                        const productName = productBox.querySelector('h3')?.textContent || 'Product';
+                        const productPrice = productBox.querySelector('.product-price')?.textContent || '₹0';
+                        const productDesc = productBox.querySelector('.product-description')?.textContent || '';
+                        const productImage = productBox.querySelector('.product-image-real')?.src || '';
+                        
+                        addToCart(productName, productPrice, productDesc, productImage);
+                    }
+                };
+            });
+            
+            // Cart button click handler - show cart modal or stay on page
+            const cartButton = document.getElementById('cartButton');
+            if (cartButton) {
+                cartButton.onclick = function() {
+                    // You can add a cart modal here or redirect to a dedicated cart page
+                    alert('Cart feature - items saved in localStorage');
+                };
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved currency
+            const savedCurrency = localStorage.getItem('selectedCurrency');
+            if (savedCurrency && currencies[savedCurrency]) {
+                currentCurrency = savedCurrency;
+            }
+            
+            storeOriginalPrices();
+            updateCurrencyDisplay();
+            updateAllPrices();
+            initializeSearch(); // Initialize search functionality
+            applyDiscount(); // Apply 10% discount
+            updateCartBadge(); // Update cart badge from localStorage
+            attachCartHandlers(); // Attach cart handlers
+            
+            // Close currency dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                const currencySelector = document.querySelector('.currency-selector');
+                if (currencySelector && !currencySelector.contains(e.target)) {
+                    closeCurrencyDropdown();
+                }
+            });
+        });
+
+        // Apply 10% discount to all products
+        function applyDiscount() {
+            document.querySelectorAll('.product-price').forEach(priceEl => {
+                const priceBox = priceEl.closest('.price-box');
+                
+                // Skip if discount already applied
+                if (priceBox && priceBox.querySelector('.old-price')) {
+                    return;
+                }
+                
+                const priceText = priceEl.textContent.trim();
+                const priceNum = parseInt(priceText.replace(/[^\d]/g, ''));
+                const discountedPrice = Math.round(priceNum * 0.9);
+                
+                if (priceBox) {
+                    // Create old price element
+                    const oldPriceEl = document.createElement('span');
+                    oldPriceEl.className = 'old-price';
+                    oldPriceEl.textContent = priceText;
+                    oldPriceEl.setAttribute('data-original-price', priceText);
+                    
+                    // Update current price
+                    priceEl.textContent = `₹${discountedPrice.toLocaleString('en-IN')}`;
+                    priceEl.setAttribute('data-original-price', `₹${discountedPrice.toLocaleString('en-IN')}`);
+                    
+                    // Create discount badge
+                    const discountEl = document.createElement('span');
+                    discountEl.className = 'discount';
+                    discountEl.textContent = '10% OFF';
+                    
+                    // Insert old price before current price
+                    priceBox.insertBefore(oldPriceEl, priceEl);
+                    priceBox.appendChild(discountEl);
+                }
+            });
+        }
+
+        // Product images mapping
+        const productImages = {
+            'headphone': 'https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'laptop': 'https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400',
+            'macbook': 'https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400',
+            'dell': 'https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400',
+            'acer': 'https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400',
+            'default': 'https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400'
+        };
+
+        // Get product image
+        function getProductImage(productName) {
+            const name = productName.toLowerCase();
+            if (name.includes('headphone') || name.includes('sony wh')) return productImages.headphone;
+            if (name.includes('macbook') || name.includes('apple')) return productImages.macbook;
+            if (name.includes('dell')) return productImages.dell;
+            if (name.includes('acer')) return productImages.acer;
+            if (name.includes('laptop')) return productImages.laptop;
+            return productImages.default;
+        }
+
+        // Fix all product images
+        function fixProductImages() {
+            document.querySelectorAll('.product-box').forEach(box => {
+                const img = box.querySelector('.product-image-real');
+                const productName = box.querySelector('h3')?.textContent || '';
+                
+                if (img && productName) {
+                    const newSrc = getProductImage(productName);
+                    img.src = newSrc;
+                    img.onerror = function() {
+                        this.src = 'https://via.placeholder.com/400x300/667eea/ffffff?text=' + encodeURIComponent(productName.substring(0, 20));
+                    };
+                }
+            });
+        }
+
+        // Lazy load images
+        function lazyLoadImages() {
+            const images = document.querySelectorAll('.product-image-real');
+            
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        
+                        // Add loading state
+                        img.style.opacity = '0.5';
+                        
+                        // Load image
+                        const tempImg = new Image();
+                        tempImg.onload = function() {
+                            img.style.opacity = '1';
+                            img.style.transition = 'opacity 0.3s ease';
+                        };
+                        
+                        tempImg.onerror = function() {
+                            // Fallback to placeholder
+                            const productName = img.closest('.product-box')?.querySelector('h3')?.textContent || 'Product';
+                            img.src = 'https://via.placeholder.com/400x300/667eea/ffffff?text=' + encodeURIComponent(productName.substring(0, 20));
+                            img.style.opacity = '1';
+                        };
+                        
+                        tempImg.src = img.src;
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '50px'
+            });
+            
+            images.forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Preload critical images
+        function preloadCriticalImages() {
+            const criticalImages = document.querySelectorAll('.product-box:nth-child(-n+6) .product-image-real');
+            criticalImages.forEach(img => {
+                const tempImg = new Image();
+                tempImg.src = img.src;
+            });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            fixProductImages();
+            preloadCriticalImages();
+            setTimeout(lazyLoadImages, 500);
+        });
+
+        // Sliding Banner Auto-Slide
+        let currentBannerSlide = 0;
+        const bannerSlides = document.querySelectorAll('.banner-slide');
+        const bannerDots = document.querySelectorAll('.banner-dots .dot');
+
+        function showBannerSlide(index) {
+            bannerSlides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (bannerDots[i]) bannerDots[i].classList.remove('active');
+            });
+            
+            if (bannerSlides[index]) {
+                bannerSlides[index].classList.add('active');
+                if (bannerDots[index]) bannerDots[index].classList.add('active');
+            }
+        }
+
+        function nextBannerSlide() {
+            currentBannerSlide = (currentBannerSlide + 1) % bannerSlides.length;
+            showBannerSlide(currentBannerSlide);
+        }
+
+        // Auto-slide every 4 seconds
+        if (bannerSlides.length > 0) {
+            setInterval(nextBannerSlide, 4000);
+            
+            // Dot click handlers
+            bannerDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentBannerSlide = index;
+                    showBannerSlide(currentBannerSlide);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

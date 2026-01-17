@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - TechVault Bengaluru</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Search Bar -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search for products..." autocomplete="off">
+            <button class="search-close" id="searchClose"><i class="fas fa-times"></i></button>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Navigation - Header Box -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <div class="logo">
+                    <i class="fas fa-bolt"></i>
+                    <span>TechVault Bengaluru</span>
+                </div>
+            </a>
+            <!-- Mega Search in Header -->
+            <div class="navbar-search">
+                <input type="text" id="navbarSearchInput" placeholder="Search for wireless earbuds, laptops, phones..." autocomplete="off">
+                <button class="navbar-search-btn" id="navbarSearchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <div class="currency-selector">
+                    <button class="currency-btn" id="currencyBtn" onclick="toggleCurrencyDropdown()">
+                        <span class="currency-flag">🇮🇳</span>
+                        <span class="currency-code">INR</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="currency-dropdown" id="currencyDropdown">
+                        <div class="currency-option" onclick="changeCurrency('INR')">
+                            <span class="currency-flag">🇮🇳</span>
+                            <div class="currency-info">
+                                <span class="currency-code">INR ₹</span>
+                                <span class="currency-name">India</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('USD')">
+                            <span class="currency-flag">🇺🇸</span>
+                            <div class="currency-info">
+                                <span class="currency-code">US $</span>
+                                <span class="currency-name">United States</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('EUR')">
+                            <span class="currency-flag">🇪🇺</span>
+                            <div class="currency-info">
+                                <span class="currency-code">EUR €</span>
+                                <span class="currency-name">Europe</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('GBP')">
+                            <span class="currency-flag">🇬🇧</span>
+                            <div class="currency-info">
+                                <span class="currency-code">GBP £</span>
+                                <span class="currency-name">United Kingdom</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('AUD')">
+                            <span class="currency-flag">🇦🇺</span>
+                            <div class="currency-info">
+                                <span class="currency-code">AU $</span>
+                                <span class="currency-name">Australia</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('CAD')">
+                            <span class="currency-flag">🇨🇦</span>
+                            <div class="currency-info">
+                                <span class="currency-code">CA $</span>
+                                <span class="currency-name">Canada</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('AED')">
+                            <span class="currency-flag">🇦🇪</span>
+                            <div class="currency-info">
+                                <span class="currency-code">AED</span>
+                                <span class="currency-name">UAE</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('SGD')">
+                            <span class="currency-flag">🇸🇬</span>
+                            <div class="currency-info">
+                                <span class="currency-code">SG $</span>
+                                <span class="currency-name">Singapore</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="search-icon" id="searchIcon">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 400px; padding: 100px 0;">
+        <div class="hero-slide hero-slide-1 active" style="position: relative; opacity: 1;">
+            <div class="hero-slide-content">
+                <h1>About TechVault</h1>
+                <p>Your Trusted Electronics Partner in Bengaluru</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Box -->
+    <section style="padding: 80px 0; background: var(--bg-color);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+                <div style="background: var(--accent-gradient); border-radius: 20px; padding: 80px; text-align: center; font-size: 150px; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);">
+                    🚀
+                </div>
+                <div>
+                    <h2 style="font-size: 42px; margin-bottom: 30px; background: var(--primary-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Our Story</h2>
+                    <p style="font-size: 18px; line-height: 1.8; margin-bottom: 20px; color: var(--text-color);">TechVault was born from a simple idea: every student in Bengaluru deserves access to quality technology without breaking the bank.</p>
+                    <p style="font-size: 18px; line-height: 1.8; margin-bottom: 20px; color: var(--text-color);">As students ourselves, we understood the struggle of finding affordable laptops for projects, headphones for online classes, and smartphones that don't cost a fortune.</p>
+                    <p style="font-size: 18px; line-height: 1.8; margin-bottom: 20px; color: var(--text-color);">What started as a small initiative has now grown into Bengaluru's favorite electronics destination. We partner directly with manufacturers to bring you genuine products at unbeatable prices.</p>
+                    <p style="font-size: 18px; line-height: 1.8; color: var(--text-color);">Today, we're proud to serve thousands of students, helping them access the technology they need to succeed!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Boxes -->
+    <section style="padding: 80px 0; background: var(--card-bg);">
+        <div class="container">
+            <h2 style="font-size: 42px; text-align: center; margin-bottom: 60px; background: var(--secondary-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Mission & Vision</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px;">
+                <div class="promo-box">
+                    <div class="promo-box-content">
+                        <div class="promo-icon" style="font-size: 80px; margin-bottom: 20px;">🎯</div>
+                        <h3 style="font-size: 28px; margin-bottom: 20px; background: var(--primary-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Our Mission</h3>
+                        <p style="font-size: 16px; line-height: 1.8; color: var(--text-color);">To make quality electronics accessible and affordable for every student in Bengaluru. We believe technology should empower, not burden, and we're committed to providing the best products at prices that won't empty your wallet.</p>
+                    </div>
+                </div>
+                <div class="promo-box">
+                    <div class="promo-box-content">
+                        <div class="promo-icon" style="font-size: 80px; margin-bottom: 20px;">👁️</div>
+                        <h3 style="font-size: 28px; margin-bottom: 20px; background: var(--primary-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Our Vision</h3>
+                        <p style="font-size: 16px; line-height: 1.8; color: var(--text-color);">To become India's most trusted electronics platform for students, expanding beyond Bengaluru to help students nationwide access the technology they need to learn, create, and innovate.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Grid -->
+    <section style="padding: 80px 0; background: var(--bg-color);">
+        <div class="container">
+            <h2 style="font-size: 42px; text-align: center; margin-bottom: 60px; background: var(--primary-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Our Core Values</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+                <div class="product-card" style="text-align: center;">
+                    <div style="font-size: 60px; margin-bottom: 20px;">💯</div>
+                    <h3 style="font-size: 22px; margin-bottom: 15px; color: #667eea;">Authenticity</h3>
+                    <p style="font-size: 16px; line-height: 1.6; color: var(--text-color);">100% genuine products with manufacturer warranty. No fakes, no compromises.</p>
+                </div>
+                <div class="product-card" style="text-align: center;">
+                    <div style="font-size: 60px; margin-bottom: 20px;">💰</div>
+                    <h3 style="font-size: 22px; margin-bottom: 15px; color: #667eea;">Affordability</h3>
+                    <p style="font-size: 16px; line-height: 1.6; color: var(--text-color);">Best prices in Bengaluru with special student discounts and flexible payment options.</p>
+                </div>
+                <div class="product-card" style="text-align: center;">
+                    <div style="font-size: 60px; margin-bottom: 20px;">⚡</div>
+                    <h3 style="font-size: 22px; margin-bottom: 15px; color: #667eea;">Speed</h3>
+                    <p style="font-size: 16px; line-height: 1.6; color: var(--text-color);">Fast delivery across Bengaluru. Order today, use tomorrow!</p>
+                </div>
+                <div class="product-card" style="text-align: center;">
+                    <div style="font-size: 60px; margin-bottom: 20px;">🤝</div>
+                    <h3 style="font-size: 22px; margin-bottom: 15px; color: #667eea;">Trust</h3>
+                    <p style="font-size: 16px; line-height: 1.6; color: var(--text-color);">Transparent pricing, honest reviews, and dedicated customer support.</p>
+                </div>
+                <div class="product-card" style="text-align: center;">
+                    <div style="font-size: 60px; margin-bottom: 20px;">🎓</div>
+                    <h3 style="font-size: 22px; margin-bottom: 15px; color: #667eea;">Student-First</h3>
+                    <p style="font-size: 16px; line-height: 1.6; color: var(--text-color);">Built by students, for students. We understand your needs and budget.</p>
+                </div>
+                <div class="product-card" style="text-align: center;">
+                    <div style="font-size: 60px; margin-bottom: 20px;">🌟</div>
+                    <h3 style="font-size: 22px; margin-bottom: 15px; color: #667eea;">Quality</h3>
+                    <p style="font-size: 16px; line-height: 1.6; color: var(--text-color);">Carefully curated products that offer the best value for money.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section style="padding: 80px 0; background: var(--accent-gradient); color: white;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: center;">
+                <div style="padding: 30px;">
+                    <div style="font-size: 56px; font-weight: bold; margin-bottom: 10px;">5000+</div>
+                    <div style="font-size: 18px; opacity: 0.9;">Happy Customers</div>
+                </div>
+                <div style="padding: 30px;">
+                    <div style="font-size: 56px; font-weight: bold; margin-bottom: 10px;">500+</div>
+                    <div style="font-size: 18px; opacity: 0.9;">Products Available</div>
+                </div>
+                <div style="padding: 30px;">
+                    <div style="font-size: 56px; font-weight: bold; margin-bottom: 10px;">50+</div>
+                    <div style="font-size: 18px; opacity: 0.9;">Pickup Locations</div>
+                </div>
+                <div style="padding: 30px;">
+                    <div style="font-size: 56px; font-weight: bold; margin-bottom: 10px;">4.8⭐</div>
+                    <div style="font-size: 18px; opacity: 0.9;">Average Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section style="padding: 80px 0; background: var(--card-bg);">
+        <div class="container">
+            <h2 style="font-size: 42px; text-align: center; margin-bottom: 60px; background: var(--primary-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Meet Our Team</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;">
+                <div class="product-card" style="text-align: center;">
+                    <div style="width: 120px; height: 120px; background: var(--accent-gradient); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 60px; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">👨‍💼</div>
+                    <h3 style="font-size: 24px; margin-bottom: 10px; color: var(--text-color);">Rahul Sharma</h3>
+                    <div style="color: #667eea; font-weight: 600; margin-bottom: 15px;">Founder & CEO</div>
+                    <p style="font-size: 14px; line-height: 1.6; color: var(--text-color);">Tech enthusiast and student advocate. Started TechVault to help fellow students access affordable technology.</p>
+                </div>
+                <div class="product-card" style="text-align: center;">
+                    <div style="width: 120px; height: 120px; background: var(--accent-gradient); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 60px; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">👩‍💻</div>
+                    <h3 style="font-size: 24px; margin-bottom: 10px; color: var(--text-color);">Priya Patel</h3>
+                    <div style="color: #667eea; font-weight: 600; margin-bottom: 15px;">Head of Operations</div>
+                    <p style="font-size: 14px; line-height: 1.6; color: var(--text-color);">Ensures smooth delivery and customer satisfaction. Your orders are in safe hands!</p>
+                </div>
+                <div class="product-card" style="text-align: center;">
+                    <div style="width: 120px; height: 120px; background: var(--accent-gradient); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 60px; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">👨‍🔧</div>
+                    <h3 style="font-size: 24px; margin-bottom: 10px; color: var(--text-color);">Arjun Kumar</h3>
+                    <div style="color: #667eea; font-weight: 600; margin-bottom: 15px;">Tech Specialist</div>
+                    <p style="font-size: 14px; line-height: 1.6; color: var(--text-color);">Product expert who handpicks the best gadgets and ensures quality standards.</p>
+                </div>
+                <div class="product-card" style="text-align: center;">
+                    <div style="width: 120px; height: 120px; background: var(--accent-gradient); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 60px; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">👩‍💼</div>
+                    <h3 style="font-size: 24px; margin-bottom: 10px; color: var(--text-color);">Sneha Reddy</h3>
+                    <div style="color: #667eea; font-weight: 600; margin-bottom: 15px;">Customer Support Lead</div>
+                    <p style="font-size: 14px; line-height: 1.6; color: var(--text-color);">Always ready to help! Reach out anytime for assistance with your orders.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="hero" style="min-height: 400px; padding: 80px 0;">
+        <div class="hero-slide hero-slide-1 active" style="position: relative; opacity: 1;">
+            <div class="hero-slide-content">
+                <h2 style="font-size: 42px; margin-bottom: 20px;">Ready to Shop?</h2>
+                <p style="font-size: 20px; margin-bottom: 40px;">Explore our amazing collection of electronics at unbeatable prices!</p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="products.html" class="cta-button">Browse Products</a>
+                    <a href="contact.html" class="cta-button" style="background: transparent; border: 2px solid white;">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TechVault</h3>
+                    <p>Your trusted electronics store in Bengaluru. Making technology accessible to everyone!</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="products.html">Audio Devices</a></li>
+                        <li><a href="products.html">Mobile Phones</a></li>
+                        <li><a href="products.html">Laptops</a></li>
+                        <li><a href="products.html">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TechVault Bengaluru. Making tech affordable for students! 🎓</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Navbar Search
+        const navbarSearchInput = document.getElementById('navbarSearchInput');
+        const navbarSearchBtn = document.getElementById('navbarSearchBtn');
+
+        if (navbarSearchInput && navbarSearchBtn) {
+            navbarSearchBtn.addEventListener('click', function() {
+                const query = navbarSearchInput.value;
+                if (query) {
+                    window.location.href = `products.html?search=${encodeURIComponent(query)}`;
+                }
+            });
+            
+            navbarSearchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const query = this.value;
+                    if (query) {
+                        window.location.href = `products.html?search=${encodeURIComponent(query)}`;
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

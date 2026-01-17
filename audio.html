@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Products - TechVault</title>
+    <link rel="stylesheet" href="style-simple.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="performance-utils.js" defer></script>
+</head>
+<body>
+    <!-- Cart Modal -->
+    <div id="cartModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000; justify-content: center; align-items: center;">
+        <div style="background: white; border-radius: 0; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+            <div style="padding: 25px; border-bottom: 2px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                <h2 style="margin: 0; color: white; font-size: 24px;"><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+                <button onclick="closeCartModal()" style="background: none; border: none; color: white; font-size: 28px; cursor: pointer; padding: 0; width: 35px; height: 35px;">&times;</button>
+            </div>
+            <div id="cartItems" style="padding: 20px; min-height: 200px;"></div>
+            <div style="padding: 20px; border-top: 2px solid #f0f0f0; background: #f8f9fa;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <span style="font-size: 20px; font-weight: 600;">Total:</span>
+                    <span id="cartTotal" style="font-size: 24px; font-weight: bold; color: #f5576c;">₹0</span>
+                </div>
+                <button onclick="proceedToBuy()" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border: none; border-radius: 0; font-size: 18px; font-weight: 600; cursor: pointer; transition: transform 0.2s;">
+                    <i class="fas fa-credit-card"></i> Proceed to Buy
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Header Box -->
+        <header class="header-box">
+            <a href="index-simple.html" style="text-decoration: none; color: inherit;">
+                <div class="logo">
+                    <i class="fas fa-bolt"></i>
+                    <span>TechVault</span>
+                </div>
+            </a>
+            <div class="header-search" style="position: relative;">
+                <input type="text" id="headerSearchInput" placeholder="Search for products, brands, categories..." autocomplete="off">
+                <button class="search-btn" id="headerSearchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div id="searchSuggestions" style="display: none; position: absolute; top: 100%; left: 0; right: 50px; background: white; border: 2px solid #e9ecef; max-height: 400px; overflow-y: auto; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></div>
+            </div>
+            <nav class="nav-box">
+                <a href="index-simple.html"><i class="fas fa-home"></i> Home</a>
+                <a href="about-page.html"><i class="fas fa-info-circle"></i> About</a>
+                <a href="deals.html"><i class="fas fa-fire"></i> Deals</a>
+                <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+            </nav>
+            <div class="header-actions">
+                <div class="currency-selector">
+                    <button class="currency-btn" id="currencyBtn" onclick="toggleCurrencyDropdown()">
+                        <span class="currency-flag">🇮🇳</span>
+                        <span class="currency-code">INR</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="currency-dropdown" id="currencyDropdown">
+                        <div class="currency-option" onclick="changeCurrency('INR')">
+                            <span class="currency-flag">🇮🇳</span>
+                            <div class="currency-info">
+                                <span class="currency-code">INR ₹</span>
+                                <span class="currency-name">India</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('USD')">
+                            <span class="currency-flag">🇺🇸</span>
+                            <div class="currency-info">
+                                <span class="currency-code">US $</span>
+                                <span class="currency-name">United States</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('EUR')">
+                            <span class="currency-flag">🇪🇺</span>
+                            <div class="currency-info">
+                                <span class="currency-code">EUR €</span>
+                                <span class="currency-name">Europe</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('GBP')">
+                            <span class="currency-flag">🇬🇧</span>
+                            <div class="currency-info">
+                                <span class="currency-code">GBP £</span>
+                                <span class="currency-name">United Kingdom</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('AUD')">
+                            <span class="currency-flag">🇦🇺</span>
+                            <div class="currency-info">
+                                <span class="currency-code">AU $</span>
+                                <span class="currency-name">Australia</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('CAD')">
+                            <span class="currency-flag">🇨🇦</span>
+                            <div class="currency-info">
+                                <span class="currency-code">CA $</span>
+                                <span class="currency-name">Canada</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('AED')">
+                            <span class="currency-flag">🇦🇪</span>
+                            <div class="currency-info">
+                                <span class="currency-code">AED</span>
+                                <span class="currency-name">UAE</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('SGD')">
+                            <span class="currency-flag">🇸🇬</span>
+                            <div class="currency-info">
+                                <span class="currency-code">SG $</span>
+                                <span class="currency-name">Singapore</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="icon-button"><i class="fas fa-search"></i></button>
+                <button class="icon-button" id="cartButton"><i class="fas fa-shopping-cart"></i><span class="badge" id="cartBadge">0</span></button>
+            </div>
+        </header>
+
+        <!-- Page Header -->
+        <section style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 80px 50px; text-align: center; color: white;">
+            <h1 style="font-size: 48px; margin-bottom: 20px;">🎧 Audio Products</h1>
+            <p style="font-size: 20px;">Premium sound for music lovers</p>
+        </section>
+
+        <!-- Audio Products Section -->
+        <section class="products-box" id="products">
+            <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 50px;">
+                <div class="section-header">
+                    <h2 class="section-title">Premium Audio</h2>
+                    <div class="filter-tabs">
+                        <button class="tab active">All Audio</button>
+                        <button class="tab">Headphones</button>
+                        <button class="tab">Earbuds</button>
+                        <button class="tab">Speakers</button>
+                    </div>
+                </div>
+                <div class="product-grid">
+                    <!-- Audio Product 1 -->
+                    <div class="product-box" onclick="window.location.href='product-sony-wh1000xm5.html'" style="cursor: pointer;">
+                        <div class="product-badge">Best Seller</div>
+                        <div class="product-image-box">
+                            <img src="sony-wh1000xm5.jpg" alt="Sony WH-1000XM5" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(1,234)</span>
+                            </div>
+                            <h3>Sony WH-1000XM5</h3>
+                            <p class="product-description">Industry-leading noise cancellation</p>
+                            <div class="price-box">
+                                <span class="old-price">₹29,990</span>
+                                <span class="product-price">₹24,990</span>
+                                <span class="discount">17% OFF</span>
+                            </div>
+                            <button class="buy-button" onclick="event.stopPropagation(); addToCart('Sony WH-1000XM5', '₹24,990', 'Industry-leading noise cancellation', 'sony-wh1000xm5.jpg')"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Audio Product 2 -->
+                    <div class="product-box">
+                        <div class="product-badge hot">Hot Deal</div>
+                        <div class="product-image-box">
+                            <img src="https://m.media-amazon.com/images/I/61f1YfTkTDL._AC_UY218_.jpg" alt="Apple AirPods Pro" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(2,456)</span>
+                            </div>
+                            <h3>Apple AirPods Pro (2nd Gen)</h3>
+                            <p class="product-description">Active Noise Cancellation, USB-C</p>
+                            <div class="price-box">
+                                <span class="old-price">₹26,900</span>
+                                <span class="product-price">₹23,900</span>
+                                <span class="discount">11% OFF</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Audio Product 3 -->
+                    <div class="product-box">
+                        <div class="product-badge new">New Arrival</div>
+                        <div class="product-image-box">
+                            <img src="https://m.media-amazon.com/images/I/51JbsIhhYsL._AC_UY218_.jpg" alt="Bose QuietComfort" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(789)</span>
+                            </div>
+                            <h3>Bose QuietComfort Ultra</h3>
+                            <p class="product-description">Spatial audio, 24hr battery</p>
+                            <div class="price-box">
+                                <span class="product-price">₹32,900</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- More products... -->
+                    <div class="product-box">
+                        <div class="product-image-box">
+                            <img src="https://m.media-amazon.com/images/I/61RnXmpAmIL._AC_UY218_.jpg" alt="JBL Flip 6" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(1,567)</span>
+                            </div>
+                            <h3>JBL Flip 6</h3>
+                            <p class="product-description">Portable Bluetooth speaker, IP67</p>
+                            <div class="price-box">
+                                <span class="old-price">₹12,999</span>
+                                <span class="product-price">₹9,999</span>
+                                <span class="discount">23% OFF</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-box">
+                        <div class="product-badge">Best Value</div>
+                        <div class="product-image-box">
+                            <img src="https://m.media-amazon.com/images/I/61aMw+Y9LCL._AC_UY218_.jpg" alt="Samsung Galaxy Buds" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(934)</span>
+                            </div>
+                            <h3>Samsung Galaxy Buds 2 Pro</h3>
+                            <p class="product-description">True wireless, ANC, 8hr battery</p>
+                            <div class="price-box">
+                                <span class="old-price">₹17,999</span>
+                                <span class="product-price">₹12,999</span>
+                                <span class="discount">28% OFF</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-box">
+                        <div class="product-image-box">
+                            <img src="https://m.media-amazon.com/images/I/61m50Z3539L._AC_UY218_.jpg" alt="Sennheiser Momentum" class="product-image-real">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(456)</span>
+                            </div>
+                            <h3>Sennheiser Momentum 4</h3>
+                            <p class="product-description">60hr battery, Audiophile sound</p>
+                            <div class="price-box">
+                                <span class="old-price">₹34,990</span>
+                                <span class="product-price">₹29,990</span>
+                                <span class="discount">14% OFF</span>
+                            </div>
+                            <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Box -->
+        <section class="trust-box">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>100% Genuine</h3>
+                    <p>All products are authentic</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-truck"></i>
+                    <h3>Free Shipping</h3>
+                    <p>On orders above ₹5,000</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-undo"></i>
+                    <h3>Easy Returns</h3>
+                    <p>7-day return policy</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Always here to help</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Box -->
+        <footer class="footer-box">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-bolt"></i> TechVault</h3>
+                    <p>Your trusted destination for quality electronics at unbeatable prices.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index-simple.html">Home</a>
+                    <a href="#">Products</a>
+                    <a href="#">Deals</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Track Order</a>
+                    <a href="#">Returns</a>
+                    <a href="#">Shipping Info</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> hello@TechVault.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Bengaluru, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TechVault. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="audio-products.js"></script>
+    <script>
+        // Load all audio products dynamically
+        function loadAudioProducts() {
+            const productGrid = document.querySelector('.product-grid');
+            if (!productGrid || typeof audioProducts === 'undefined') {
+                console.error('Product grid or audioProducts not found');
+                return;
+            }
+            
+            // Keep the first 6 hardcoded products, add the rest dynamically
+            audioProducts.forEach(product => {
+                const productBox = document.createElement('div');
+                productBox.className = 'product-box';
+                
+                // Create badge if exists
+                const badgeHTML = product.badge ? `<div class="product-badge ${product.badge.toLowerCase().replace(/\s+/g, '-')}">${product.badge}</div>` : '';
+                
+                // Create rating stars
+                const fullStars = Math.floor(product.rating);
+                const hasHalfStar = product.rating % 1 !== 0;
+                let starsHTML = '';
+                for (let i = 0; i < fullStars; i++) {
+                    starsHTML += '<i class="fas fa-star"></i>';
+                }
+                if (hasHalfStar) {
+                    starsHTML += '<i class="fas fa-star-half-alt"></i>';
+                }
+                const emptyStars = 5 - Math.ceil(product.rating);
+                for (let i = 0; i < emptyStars; i++) {
+                    starsHTML += '<i class="far fa-star"></i>';
+                }
+                
+                // Format price
+                const formattedPrice = `₹${product.price.toLocaleString('en-IN')}`;
+                
+                productBox.innerHTML = `
+                    ${badgeHTML}
+                    <div class="product-image-box">
+                        <img src="${product.image}" alt="${product.name}" class="product-image-real">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-rating">
+                            ${starsHTML}
+                            <span>(${product.reviews.toLocaleString()})</span>
+                        </div>
+                        <h3>${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="price-box">
+                            <span class="product-price">${formattedPrice}</span>
+                        </div>
+                        <button class="buy-button"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    </div>
+                `;
+                
+                productGrid.appendChild(productBox);
+            });
+            
+            console.log(`Loaded ${audioProducts.length} audio products`);
+        }
+        
+        // Load products when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAudioProducts();
+        });
+
+        // Live Search Functionality with Dropdown Suggestions
+        function initializeSearch() {
+            const searchInput = document.getElementById('headerSearchInput');
+            const searchSuggestions = document.getElementById('searchSuggestions');
+            const productBoxes = document.querySelectorAll('.product-box');
+            
+            if (searchInput && searchSuggestions) {
+                searchInput.addEventListener('input', function(e) {
+                    const searchTerm = e.target.value.toLowerCase().trim();
+                    
+                    if (searchTerm === '') {
+                        searchSuggestions.style.display = 'none';
+                        return;
+                    }
+                    
+                    // Collect matching products
+                    const matches = [];
+                    productBoxes.forEach(box => {
+                        const productName = box.querySelector('h3').textContent;
+                        const productDescription = box.querySelector('.product-description').textContent;
+                        const productPrice = box.querySelector('.product-price').textContent;
+                        const productImage = box.querySelector('.product-image-real').src;
+                        
+                        if (productName.toLowerCase().includes(searchTerm) || 
+                            productDescription.toLowerCase().includes(searchTerm)) {
+                            matches.push({
+                                name: productName,
+                                description: productDescription,
+                                price: productPrice,
+                                image: productImage,
+                                element: box
+                            });
+                        }
+                    });
+                    
+                    // Display suggestions
+                    if (matches.length > 0) {
+                        searchSuggestions.innerHTML = matches.slice(0, 8).map(product => `
+                            <div class="search-suggestion-item" style="display: flex; align-items: center; padding: 12px 15px; border-bottom: 1px solid #f0f0f0; cursor: pointer; transition: background 0.2s;" 
+                                 onmouseover="this.style.background='#f8f9fa'" 
+                                 onmouseout="this.style.background='white'"
+                                 onclick="selectProduct('${product.name.replace(/'/g, "\\'")}')">
+                                <img src="${product.image}" alt="${product.name}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 15px; border: 1px solid #e9ecef;">
+                                <div style="flex: 1;">
+                                    <div style="font-weight: 600; color: #333; font-size: 14px; margin-bottom: 3px;">${product.name}</div>
+                                    <div style="font-size: 12px; color: #666; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${product.description}</div>
+                                </div>
+                                <div style="font-weight: bold; color: #007bff; font-size: 16px; margin-left: 15px;">${product.price}</div>
+                            </div>
+                        `).join('');
+                        
+                        if (matches.length > 8) {
+                            searchSuggestions.innerHTML += `
+                                <div style="padding: 12px 15px; text-align: center; color: #666; font-size: 13px; background: #f8f9fa;">
+                                    +${matches.length - 8} more results
+                                </div>
+                            `;
+                        }
+                        
+                        searchSuggestions.style.display = 'block';
+                    } else {
+                        searchSuggestions.innerHTML = `
+                            <div style="padding: 30px; text-align: center; color: #999;">
+                                <i class="fas fa-search" style="font-size: 32px; margin-bottom: 10px;"></i>
+                                <p>No products found for "${searchTerm}"</p>
+                            </div>
+                        `;
+                        searchSuggestions.style.display = 'block';
+                    }
+                });
+                
+                // Close suggestions when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                        searchSuggestions.style.display = 'none';
+                    }
+                });
+                
+                // Show suggestions when clicking on search input
+                searchInput.addEventListener('focus', function() {
+                    if (searchInput.value.trim() !== '') {
+                        searchInput.dispatchEvent(new Event('input'));
+                    }
+                });
+            }
+        }
+        
+        // Select product from suggestions
+        function selectProduct(productName) {
+            const searchInput = document.getElementById('headerSearchInput');
+            const searchSuggestions = document.getElementById('searchSuggestions');
+            
+            searchInput.value = productName;
+            searchSuggestions.style.display = 'none';
+            
+            // Scroll to the product
+            const productBoxes = document.querySelectorAll('.product-box');
+            productBoxes.forEach(box => {
+                const name = box.querySelector('h3').textContent;
+                if (name === productName) {
+                    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    box.style.animation = 'pulse 1s ease';
+                }
+            });
+        }
+
+        // Wait for products to load before initializing search
+        setTimeout(initializeSearch, 500);
+
+        // Update cart badge from localStorage
+        function updateCartBadge() {
+            const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            const cartBadge = document.getElementById('cartBadge');
+            if (cartBadge) {
+                const totalItems = shoppingCart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                cartBadge.textContent = totalItems;
+            }
+        }
+
+        // Add to cart function
+        function addToCart(productName, productPrice, productDesc, productImage) {
+            let shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            
+            // Check if product already exists in cart
+            const existingProduct = shoppingCart.find(item => item.name === productName);
+            
+            if (existingProduct) {
+                existingProduct.quantity = (existingProduct.quantity || 1) + 1;
+            } else {
+                const product = {
+                    name: productName,
+                    price: productPrice,
+                    desc: productDesc,
+                    image: productImage,
+                    quantity: 1,
+                    id: Date.now()
+                };
+                shoppingCart.push(product);
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
+            updateCartBadge();
+            
+            // Show notification
+            showNotification(`${productName} added to cart!`);
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+                font-weight: 600;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 1500);
+        }
+
+        // Attach cart handlers to all buy buttons
+        function attachCartHandlers() {
+            document.querySelectorAll('.buy-button').forEach(button => {
+                button.onclick = function(e) {
+                    e.preventDefault();
+                    const productBox = this.closest('.product-box');
+                    if (productBox) {
+                        const productName = productBox.querySelector('h3')?.textContent || 'Product';
+                        const productPrice = productBox.querySelector('.product-price')?.textContent || '₹0';
+                        const productDesc = productBox.querySelector('.product-description')?.textContent || '';
+                        const productImage = productBox.querySelector('.product-image-real')?.src || '';
+                        
+                        addToCart(productName, productPrice, productDesc, productImage);
+                    }
+                };
+            });
+            
+            // Cart button click handler - show cart modal
+            const cartButton = document.getElementById('cartButton');
+            if (cartButton) {
+                cartButton.onclick = function() {
+                    showCartModal();
+                };
+            }
+        }
+
+        // Show cart modal
+        function showCartModal() {
+            const cartModal = document.getElementById('cartModal');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            
+            if (shoppingCart.length === 0) {
+                cartItems.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #999;">
+                        <i class="fas fa-shopping-cart" style="font-size: 64px; margin-bottom: 20px;"></i>
+                        <p style="font-size: 18px;">Your cart is empty</p>
+                        <p>Add some products to get started!</p>
+                    </div>
+                `;
+                cartTotal.textContent = '₹0';
+            } else {
+                let total = 0;
+                cartItems.innerHTML = shoppingCart.map((item, index) => {
+                    const price = parseInt(item.price.replace(/[^\d]/g, ''));
+                    const quantity = item.quantity || 1;
+                    const itemTotal = price * quantity;
+                    total += itemTotal;
+                    
+                    return `
+                        <div style="display: flex; gap: 15px; padding: 15px; border-bottom: 1px solid #f0f0f0; align-items: center;">
+                            <img src="${item.image}" alt="${item.name}" style="width: 80px; height: 80px; object-fit: cover; border: 1px solid #e9ecef;">
+                            <div style="flex: 1;">
+                                <h4 style="margin: 0 0 5px 0; font-size: 16px;">${item.name}</h4>
+                                <p style="margin: 0; color: #666; font-size: 14px;">${item.desc}</p>
+                                <div style="margin-top: 8px; display: flex; align-items: center; gap: 10px;">
+                                    <button onclick="updateQuantity(${index}, -1)" style="width: 30px; height: 30px; border: 1px solid #ddd; background: white; cursor: pointer; font-size: 16px;">-</button>
+                                    <span style="font-weight: 600; min-width: 30px; text-align: center;">${quantity}</span>
+                                    <button onclick="updateQuantity(${index}, 1)" style="width: 30px; height: 30px; border: 1px solid #ddd; background: white; cursor: pointer; font-size: 16px;">+</button>
+                                    <button onclick="removeFromCart(${index})" style="margin-left: auto; color: #f5576c; background: none; border: none; cursor: pointer; font-size: 14px;"><i class="fas fa-trash"></i> Remove</button>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-weight: bold; font-size: 18px; color: #f5576c;">₹${itemTotal.toLocaleString('en-IN')}</div>
+                                <div style="font-size: 12px; color: #999;">₹${price.toLocaleString('en-IN')} each</div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                
+                cartTotal.textContent = `₹${total.toLocaleString('en-IN')}`;
+            }
+            
+            cartModal.style.display = 'flex';
+        }
+
+        // Close cart modal
+        function closeCartModal() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        // Update quantity
+        function updateQuantity(index, change) {
+            let shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            if (shoppingCart[index]) {
+                shoppingCart[index].quantity = (shoppingCart[index].quantity || 1) + change;
+                if (shoppingCart[index].quantity <= 0) {
+                    shoppingCart.splice(index, 1);
+                }
+                localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
+                updateCartBadge();
+                showCartModal();
+            }
+        }
+
+        // Remove from cart
+        function removeFromCart(index) {
+            let shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            shoppingCart.splice(index, 1);
+            localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
+            updateCartBadge();
+            showCartModal();
+        }
+
+        // Proceed to buy
+        function proceedToBuy() {
+            const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            if (shoppingCart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            const totalItems = shoppingCart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            let total = 0;
+            shoppingCart.forEach(item => {
+                const price = parseInt(item.price.replace(/[^\d]/g, ''));
+                total += price * (item.quantity || 1);
+            });
+            
+            alert(`🎉 Thank you for shopping at TechVault!\n\n📦 Order Summary:\n• ${totalItems} item(s) in cart\n• Total: ₹${total.toLocaleString('en-IN')}\n• Free shipping on orders above ₹5,000\n\n✅ This is a demo - checkout page would open here.`);
+            
+            // Clear cart after purchase
+            localStorage.removeItem('shoppingCart');
+            updateCartBadge();
+            closeCartModal();
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            const cartModal = document.getElementById('cartModal');
+            if (e.target === cartModal) {
+                closeCartModal();
+            }
+        });
+        // Currency functionality
+        const currencies = {
+            'INR': { symbol: '₹', rate: 1, flag: '🇮🇳', name: 'Indian Rupee' },
+            'USD': { symbol: '$', rate: 0.012, flag: '🇺🇸', name: 'US Dollar' },
+            'EUR': { symbol: '€', rate: 0.011, flag: '🇪🇺', name: 'Euro' },
+            'GBP': { symbol: '£', rate: 0.0095, flag: '🇬🇧', name: 'British Pound' },
+            'AUD': { symbol: 'A$', rate: 0.018, flag: '🇦🇺', name: 'Australian Dollar' },
+            'CAD': { symbol: 'C$', rate: 0.016, flag: '🇨🇦', name: 'Canadian Dollar' },
+            'AED': { symbol: 'AED', rate: 0.044, flag: '🇦🇪', name: 'UAE Dirham' },
+            'SGD': { symbol: 'S$', rate: 0.016, flag: '🇸🇬', name: 'Singapore Dollar' }
+        };
+
+        let currentCurrency = 'INR';
+
+        // Format price with currency
+        function formatPrice(priceText) {
+            const priceNum = parseInt(priceText.replace(/[^\d]/g, ''));
+            const currency = currencies[currentCurrency];
+            const convertedPrice = priceNum * currency.rate;
+            
+            if (currentCurrency === 'INR') {
+                return `${currency.symbol}${convertedPrice.toLocaleString('en-IN')}`;
+            } else {
+                return `${currency.symbol}${convertedPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+            }
+        }
+
+        // Update all prices on page
+        function updateAllPrices() {
+            document.querySelectorAll('.product-price').forEach(priceEl => {
+                const originalPrice = priceEl.getAttribute('data-original-price');
+                if (originalPrice) {
+                    priceEl.textContent = formatPrice(originalPrice);
+                }
+            });
+            
+            document.querySelectorAll('.old-price').forEach(priceEl => {
+                const originalPrice = priceEl.getAttribute('data-original-price');
+                if (originalPrice) {
+                    priceEl.textContent = formatPrice(originalPrice);
+                }
+            });
+        }
+
+        // Store original prices
+        function storeOriginalPrices() {
+            document.querySelectorAll('.product-price').forEach(priceEl => {
+                if (!priceEl.getAttribute('data-original-price')) {
+                    priceEl.setAttribute('data-original-price', priceEl.textContent);
+                }
+            });
+            
+            document.querySelectorAll('.old-price').forEach(priceEl => {
+                if (!priceEl.getAttribute('data-original-price')) {
+                    priceEl.setAttribute('data-original-price', priceEl.textContent);
+                }
+            });
+        }
+
+        // Change Currency
+        function changeCurrency(newCurrency) {
+            currentCurrency = newCurrency;
+            localStorage.setItem('selectedCurrency', newCurrency);
+            updateCurrencyDisplay();
+            updateAllPrices();
+            closeCurrencyDropdown();
+            showNotification(`Currency changed to ${currencies[newCurrency].name}`);
+        }
+
+        // Update currency display
+        function updateCurrencyDisplay() {
+            const currencyBtn = document.getElementById('currencyBtn');
+            if (currencyBtn) {
+                const currency = currencies[currentCurrency];
+                currencyBtn.innerHTML = `
+                    <span class="currency-flag">${currency.flag}</span>
+                    <span class="currency-code">${currentCurrency}</span>
+                    <i class="fas fa-chevron-down"></i>
+                `;
+            }
+        }
+
+        // Toggle currency dropdown
+        function toggleCurrencyDropdown() {
+            const dropdown = document.getElementById('currencyDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        // Close currency dropdown
+        function closeCurrencyDropdown() {
+            const dropdown = document.getElementById('currencyDropdown');
+            dropdown.classList.remove('active');
+        }
+
+        // Initialize cart badge
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartBadge();
+            
+            // Load saved currency
+            const savedCurrency = localStorage.getItem('selectedCurrency');
+            if (savedCurrency && currencies[savedCurrency]) {
+                currentCurrency = savedCurrency;
+            }
+            
+            setTimeout(() => {
+                storeOriginalPrices();
+                updateCurrencyDisplay();
+                updateAllPrices();
+                attachCartHandlers();
+            }, 1000);
+            
+            // Close currency dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                const currencySelector = document.querySelector('.currency-selector');
+                if (currencySelector && !currencySelector.contains(e.target)) {
+                    closeCurrencyDropdown();
+                }
+            });
+        });
+
+        // Apply 10% discount to all products
+        function applyDiscount() {
+            setTimeout(() => {
+                document.querySelectorAll('.product-price').forEach(priceEl => {
+                    const priceBox = priceEl.closest('.price-box');
+                    
+                    // Skip if discount already applied
+                    if (priceBox && priceBox.querySelector('.old-price')) {
+                        return;
+                    }
+                    
+                    const priceText = priceEl.textContent.trim();
+                    const priceNum = parseInt(priceText.replace(/[^\d]/g, ''));
+                    const discountedPrice = Math.round(priceNum * 0.9);
+                    
+                    if (priceBox) {
+                        // Create old price element
+                        const oldPriceEl = document.createElement('span');
+                        oldPriceEl.className = 'old-price';
+                        oldPriceEl.textContent = priceText;
+                        
+                        // Update current price
+                        priceEl.textContent = `₹${discountedPrice.toLocaleString('en-IN')}`;
+                        
+                        // Create discount badge
+                        const discountEl = document.createElement('span');
+                        discountEl.className = 'discount';
+                        discountEl.textContent = '10% OFF';
+                        
+                        // Insert elements
+                        priceBox.insertBefore(oldPriceEl, priceEl);
+                        priceBox.appendChild(discountEl);
+                    }
+                });
+            }, 600);
+        }
+
+        // Audio product images mapping
+        const audioImages = {
+            'sony': 'https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'bose': 'https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'jbl': 'https://images.pexels.com/photos/1279406/pexels-photo-1279406.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'apple': 'https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'samsung': 'https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'sennheiser': 'https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'beats': 'https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'speaker': 'https://images.pexels.com/photos/1279406/pexels-photo-1279406.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'headphone': 'https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'earbud': 'https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'soundbar': 'https://images.pexels.com/photos/1279406/pexels-photo-1279406.jpeg?auto=compress&cs=tinysrgb&w=400',
+            'default': 'https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=400'
+        };
+
+        // Get audio product image
+        function getAudioImage(productName) {
+            const name = productName.toLowerCase();
+            if (name.includes('sony')) return audioImages.sony;
+            if (name.includes('bose')) return audioImages.bose;
+            if (name.includes('jbl')) return audioImages.jbl;
+            if (name.includes('apple') || name.includes('airpods')) return audioImages.apple;
+            if (name.includes('samsung') || name.includes('galaxy buds')) return audioImages.samsung;
+            if (name.includes('sennheiser')) return audioImages.sennheiser;
+            if (name.includes('beats')) return audioImages.beats;
+            if (name.includes('speaker') || name.includes('flip') || name.includes('charge')) return audioImages.speaker;
+            if (name.includes('headphone') || name.includes('headset')) return audioImages.headphone;
+            if (name.includes('buds') || name.includes('earbud') || name.includes('earphone')) return audioImages.earbud;
+            if (name.includes('soundbar') || name.includes('bar')) return audioImages.soundbar;
+            return audioImages.default;
+        }
+
+        // Fix all audio product images
+        function fixAudioImages() {
+            setTimeout(() => {
+                document.querySelectorAll('.product-box').forEach(box => {
+                    const img = box.querySelector('.product-image-real');
+                    const productName = box.querySelector('h3')?.textContent || '';
+                    
+                    if (img && productName) {
+                        const newSrc = getAudioImage(productName);
+                        img.src = newSrc;
+                        img.onerror = function() {
+                            this.src = 'https://via.placeholder.com/400x300/f093fb/ffffff?text=' + encodeURIComponent(productName.substring(0, 20));
+                        };
+                    }
+                });
+            }, 800);
+        }
+
+        // Lazy load images
+        function lazyLoadImages() {
+            const images = document.querySelectorAll('.product-image-real');
+            
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        
+                        // Add loading state
+                        img.style.opacity = '0.5';
+                        
+                        // Load image
+                        const tempImg = new Image();
+                        tempImg.onload = function() {
+                            img.style.opacity = '1';
+                            img.style.transition = 'opacity 0.3s ease';
+                        };
+                        
+                        tempImg.onerror = function() {
+                            // Fallback to placeholder
+                            const productName = img.closest('.product-box')?.querySelector('h3')?.textContent || 'Audio Product';
+                            img.src = 'https://via.placeholder.com/400x300/f093fb/ffffff?text=' + encodeURIComponent(productName.substring(0, 20));
+                            img.style.opacity = '1';
+                        };
+                        
+                        tempImg.src = img.src;
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '50px'
+            });
+            
+            images.forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Preload critical images
+        function preloadCriticalImages() {
+            const criticalImages = document.querySelectorAll('.product-box:nth-child(-n+6) .product-image-real');
+            criticalImages.forEach(img => {
+                const tempImg = new Image();
+                tempImg.src = img.src;
+            });
+        }
+
+        // Apply discount after products load
+        setTimeout(applyDiscount, 700);
+        
+        // Initialize lazy loading and fix images
+        setTimeout(() => {
+            fixAudioImages();
+            preloadCriticalImages();
+            lazyLoadImages();
+        }, 900);
+    </script>
+</body>
+</html>

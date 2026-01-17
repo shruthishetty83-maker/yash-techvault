@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - TechVault</title>
+    <link rel="stylesheet" href="style-simple.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="performance-utils.js" defer></script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header Box -->
+        <header class="header-box">
+            <a href="index-simple.html" style="text-decoration: none; color: inherit;">
+                <div class="logo">
+                    <i class="fas fa-bolt"></i>
+                    <span>TechVault</span>
+                </div>
+            </a>
+            <div class="header-search" style="position: relative;">
+                <input type="text" id="headerSearchInput" placeholder="Search for products, brands, categories..." autocomplete="off">
+                <button class="search-btn" id="headerSearchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div id="searchSuggestions" style="display: none; position: absolute; top: 100%; left: 0; right: 50px; background: white; border: 2px solid #e9ecef; max-height: 400px; overflow-y: auto; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></div>
+            </div>
+            <nav class="nav-box">
+                <a href="index-simple.html"><i class="fas fa-home"></i> Home</a>
+                <a href="about-page.html"><i class="fas fa-info-circle"></i> About</a>
+                <a href="deals.html"><i class="fas fa-fire"></i> Deals</a>
+                <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+            </nav>
+            <div class="header-actions">
+                <div class="currency-selector">
+                    <button class="currency-btn" id="currencyBtn" onclick="toggleCurrencyDropdown()">
+                        <span class="currency-flag">🇮🇳</span>
+                        <span class="currency-code">INR</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="currency-dropdown" id="currencyDropdown">
+                        <div class="currency-option" onclick="changeCurrency('INR')">
+                            <span class="currency-flag">🇮🇳</span>
+                            <div class="currency-info">
+                                <span class="currency-code">INR ₹</span>
+                                <span class="currency-name">India</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('USD')">
+                            <span class="currency-flag">🇺🇸</span>
+                            <div class="currency-info">
+                                <span class="currency-code">US $</span>
+                                <span class="currency-name">United States</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('EUR')">
+                            <span class="currency-flag">🇪🇺</span>
+                            <div class="currency-info">
+                                <span class="currency-code">EUR €</span>
+                                <span class="currency-name">Europe</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('GBP')">
+                            <span class="currency-flag">🇬🇧</span>
+                            <div class="currency-info">
+                                <span class="currency-code">GBP £</span>
+                                <span class="currency-name">United Kingdom</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('AUD')">
+                            <span class="currency-flag">🇦🇺</span>
+                            <div class="currency-info">
+                                <span class="currency-code">AU $</span>
+                                <span class="currency-name">Australia</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('CAD')">
+                            <span class="currency-flag">🇨🇦</span>
+                            <div class="currency-info">
+                                <span class="currency-code">CA $</span>
+                                <span class="currency-name">Canada</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('AED')">
+                            <span class="currency-flag">🇦🇪</span>
+                            <div class="currency-info">
+                                <span class="currency-code">AED</span>
+                                <span class="currency-name">UAE</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('SGD')">
+                            <span class="currency-flag">🇸🇬</span>
+                            <div class="currency-info">
+                                <span class="currency-code">SG $</span>
+                                <span class="currency-name">Singapore</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="icon-button"><i class="fas fa-search"></i></button>
+                <button class="icon-button" id="cartButton"><i class="fas fa-shopping-cart"></i><span class="badge" id="cartBadge">0</span></button>
+            </div>
+        </header>
+
+        <!-- Page Header -->
+        <section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 80px 50px; text-align: center; color: white;">
+            <h1 style="font-size: 48px; margin-bottom: 20px;">About TechVault</h1>
+            <p style="font-size: 20px;">Your trusted partner in electronics since 2020</p>
+        </section>
+
+        <!-- Our Story Section -->
+        <section style="padding: 80px 50px; background: #fff;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <div style="text-align: center; margin-bottom: 60px;">
+                    <h2 style="font-size: 48px; margin-bottom: 20px; color: #333;">
+                        Your Trusted Partner in <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Electronics Excellence</span>
+                    </h2>
+                    <p style="font-size: 18px; color: #666; max-width: 800px; margin: 0 auto;">
+                        Delivering premium technology products with unmatched service since 2020
+                    </p>
+                </div>
+
+                <!-- Icon Grid -->
+                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 40px; margin-bottom: 80px;">
+                    <div style="text-align: center;">
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
+                            <i class="fas fa-mobile-alt" style="font-size: 60px; color: white;"></i>
+                        </div>
+                        <h4 style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 8px;">150+ Smartphones</h4>
+                        <p style="font-size: 13px; color: #666;">Latest flagships</p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 30px rgba(240, 147, 251, 0.3);">
+                            <i class="fas fa-headphones" style="font-size: 60px; color: white;"></i>
+                        </div>
+                        <h4 style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 8px;">196+ Audio Products</h4>
+                        <p style="font-size: 13px; color: #666;">Premium sound</p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 30px rgba(79, 172, 254, 0.3);">
+                            <i class="fas fa-laptop" style="font-size: 60px; color: white;"></i>
+                        </div>
+                        <h4 style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 8px;">100+ Laptops</h4>
+                        <p style="font-size: 13px; color: #666;">Work & gaming</p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 30px rgba(250, 112, 154, 0.3);">
+                            <i class="fas fa-camera" style="font-size: 60px; color: white;"></i>
+                        </div>
+                        <h4 style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 8px;">80+ Cameras</h4>
+                        <p style="font-size: 13px; color: #666;">Capture moments</p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 30px rgba(48, 207, 208, 0.3);">
+                            <i class="fas fa-tv" style="font-size: 60px; color: white;"></i>
+                        </div>
+                        <h4 style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 8px;">60+ Smart TVs</h4>
+                        <p style="font-size: 13px; color: #666;">Entertainment</p>
+                    </div>
+                </div>
+
+                <!-- Second Row of Icons -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; max-width: 900px; margin: 0 auto 80px;">
+                    <div style="text-align: center;">
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 30px rgba(168, 237, 234, 0.3);">
+                            <i class="fas fa-shield-alt" style="font-size: 60px; color: #667eea;"></i>
+                        </div>
+                        <h4 style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 8px;">100% Genuine</h4>
+                        <p style="font-size: 13px; color: #666;">Authentic products</p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 30px rgba(255, 236, 210, 0.3);">
+                            <i class="fas fa-shipping-fast" style="font-size: 60px; color: #f5576c;"></i>
+                        </div>
+                        <h4 style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 8px;">Fast Delivery</h4>
+                        <p style="font-size: 13px; color: #666;">Free shipping ₹5K+</p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 30px rgba(255, 154, 158, 0.3);">
+                            <i class="fas fa-headset" style="font-size: 60px; color: #764ba2;"></i>
+                        </div>
+                        <h4 style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 8px;">24/7 Support</h4>
+                        <p style="font-size: 13px; color: #666;">Always available</p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 10px 30px rgba(251, 194, 235, 0.3);">
+                            <i class="fas fa-star" style="font-size: 60px; color: #fee140;"></i>
+                        </div>
+                        <h4 style="font-size: 16px; font-weight: 600; color: #333; margin-bottom: 8px;">5000+ Happy</h4>
+                        <p style="font-size: 13px; color: #666;">Satisfied customers</p>
+                    </div>
+                </div>
+
+                <!-- Story Content -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+                    <div>
+                        <h2 style="font-size: 36px; margin-bottom: 25px; color: #333;">Our Story</h2>
+                        <p style="font-size: 16px; line-height: 1.8; color: #666; margin-bottom: 20px;">
+                            Founded in 2020, TechVault started with a simple mission: to make premium electronics accessible to everyone in Bengaluru. What began as a small store has grown into a trusted destination for tech enthusiasts across India.
+                        </p>
+                        <p style="font-size: 16px; line-height: 1.8; color: #666; margin-bottom: 20px;">
+                            We believe technology should empower, not overwhelm. That's why we carefully curate our product selection, ensuring every item meets our high standards for quality, performance, and value.
+                        </p>
+                        <p style="font-size: 16px; line-height: 1.8; color: #666;">
+                            Today, we serve thousands of happy customers, from students looking for their first laptop to professionals seeking the latest flagship smartphones.
+                        </p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 80px; text-align: center; border: 2px solid #e9ecef;">
+                        <div style="font-size: 120px; margin-bottom: 20px;">🚀</div>
+                        <h3 style="font-size: 28px; color: white; margin-bottom: 10px;">5000+</h3>
+                        <p style="font-size: 16px; color: rgba(255,255,255,0.9);">Happy Customers</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section style="padding: 80px 50px; background: #f8f9fa;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <h2 style="font-size: 36px; text-align: center; margin-bottom: 50px; color: #333;">Why Choose TechVault?</h2>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
+                    <div style="background: white; padding: 40px; text-align: center; border: 2px solid #e9ecef;">
+                        <div style="font-size: 48px; color: #007bff; margin-bottom: 20px;">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 style="font-size: 22px; margin-bottom: 15px; color: #333;">100% Genuine</h3>
+                        <p style="font-size: 15px; line-height: 1.6; color: #666;">
+                            Every product comes with manufacturer warranty and authenticity guarantee. No fakes, ever.
+                        </p>
+                    </div>
+                    <div style="background: white; padding: 40px; text-align: center; border: 2px solid #e9ecef;">
+                        <div style="font-size: 48px; color: #007bff; margin-bottom: 20px;">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3 style="font-size: 22px; margin-bottom: 15px; color: #333;">Fast Delivery</h3>
+                        <p style="font-size: 15px; line-height: 1.6; color: #666;">
+                            Free shipping on orders above ₹5,000. Same-day delivery available in Bengaluru.
+                        </p>
+                    </div>
+                    <div style="background: white; padding: 40px; text-align: center; border: 2px solid #e9ecef;">
+                        <div style="font-size: 48px; color: #007bff; margin-bottom: 20px;">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3 style="font-size: 22px; margin-bottom: 15px; color: #333;">24/7 Support</h3>
+                        <p style="font-size: 15px; line-height: 1.6; color: #666;">
+                            Our expert team is always ready to help with product selection and technical support.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Values Section -->
+        <section style="padding: 80px 50px; background: white;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <h2 style="font-size: 36px; text-align: center; margin-bottom: 50px; color: #333;">Our Values</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                    <div style="padding: 30px; border-left: 4px solid #007bff;">
+                        <h3 style="font-size: 24px; margin-bottom: 15px; color: #333;">
+                            <i class="fas fa-check-circle" style="color: #007bff; margin-right: 10px;"></i>
+                            Customer First
+                        </h3>
+                        <p style="font-size: 15px; line-height: 1.6; color: #666;">
+                            Your satisfaction is our priority. We go the extra mile to ensure you have the best shopping experience.
+                        </p>
+                    </div>
+                    <div style="padding: 30px; border-left: 4px solid #007bff;">
+                        <h3 style="font-size: 24px; margin-bottom: 15px; color: #333;">
+                            <i class="fas fa-check-circle" style="color: #007bff; margin-right: 10px;"></i>
+                            Quality Assurance
+                        </h3>
+                        <p style="font-size: 15px; line-height: 1.6; color: #666;">
+                            We test and verify every product before it reaches you. Quality is never compromised.
+                        </p>
+                    </div>
+                    <div style="padding: 30px; border-left: 4px solid #007bff;">
+                        <h3 style="font-size: 24px; margin-bottom: 15px; color: #333;">
+                            <i class="fas fa-check-circle" style="color: #007bff; margin-right: 10px;"></i>
+                            Fair Pricing
+                        </h3>
+                        <p style="font-size: 15px; line-height: 1.6; color: #666;">
+                            Competitive prices without hidden charges. What you see is what you pay.
+                        </p>
+                    </div>
+                    <div style="padding: 30px; border-left: 4px solid #007bff;">
+                        <h3 style="font-size: 24px; margin-bottom: 15px; color: #333;">
+                            <i class="fas fa-check-circle" style="color: #007bff; margin-right: 10px;"></i>
+                            Expert Guidance
+                        </h3>
+                        <p style="font-size: 15px; line-height: 1.6; color: #666;">
+                            Our team helps you choose the right product for your needs and budget.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Reviews Section -->
+        <section style="padding: 80px 50px; background: #f8f9fa;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <h2 style="font-size: 36px; text-align: center; margin-bottom: 50px; color: #333;">What Our Customers Say</h2>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                    <!-- Review 1 -->
+                    <div style="background: white; padding: 30px; border: 2px solid #e9ecef;">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: bold; margin-right: 15px;">R</div>
+                            <div>
+                                <div style="font-weight: bold; color: #333;">Rahul Sharma</div>
+                                <div style="color: #ffc107; font-size: 14px;">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size: 15px; line-height: 1.6; color: #666; margin-bottom: 10px;">
+                            "Bought the iPhone 17 Pro Max from TechVault. Genuine product, great price, and delivered the same day! Customer service was excellent."
+                        </p>
+                        <div style="font-size: 13px; color: #999;">2 weeks ago</div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div style="background: white; padding: 30px; border: 2px solid #e9ecef;">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: bold; margin-right: 15px;">P</div>
+                            <div>
+                                <div style="font-weight: bold; color: #333;">Priya Patel</div>
+                                <div style="color: #ffc107; font-size: 14px;">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size: 15px; line-height: 1.6; color: #666; margin-bottom: 10px;">
+                            "Best electronics store in Bengaluru! Got my MacBook Air M2 at an amazing price. The staff helped me choose the perfect laptop for my needs."
+                        </p>
+                        <div style="font-size: 13px; color: #999;">1 month ago</div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div style="background: white; padding: 30px; border: 2px solid #e9ecef;">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: bold; margin-right: 15px;">A</div>
+                            <div>
+                                <div style="font-weight: bold; color: #333;">Arjun Kumar</div>
+                                <div style="color: #ffc107; font-size: 14px;">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size: 15px; line-height: 1.6; color: #666; margin-bottom: 10px;">
+                            "Purchased Samsung S25 Ultra for gaming. The phone is amazing and TechVault's after-sales support is top-notch. Highly recommended!"
+                        </p>
+                        <div style="font-size: 13px; color: #999;">3 weeks ago</div>
+                    </div>
+
+                    <!-- Review 4 -->
+                    <div style="background: white; padding: 30px; border: 2px solid #e9ecef;">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: bold; margin-right: 15px;">S</div>
+                            <div>
+                                <div style="font-weight: bold; color: #333;">Sneha Reddy</div>
+                                <div style="color: #ffc107; font-size: 14px;">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size: 15px; line-height: 1.6; color: #666; margin-bottom: 10px;">
+                            "Fast delivery, genuine products, and great prices. I've bought multiple items from TechVault and never been disappointed. My go-to store!"
+                        </p>
+                        <div style="font-size: 13px; color: #999;">1 week ago</div>
+                    </div>
+
+                    <!-- Review 5 -->
+                    <div style="background: white; padding: 30px; border: 2px solid #e9ecef;">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: bold; margin-right: 15px;">V</div>
+                            <div>
+                                <div style="font-weight: bold; color: #333;">Vikram Singh</div>
+                                <div style="color: #ffc107; font-size: 14px;">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size: 15px; line-height: 1.6; color: #666; margin-bottom: 10px;">
+                            "Ordered OnePlus 15 and it arrived perfectly packaged. The team answered all my questions patiently. Excellent shopping experience!"
+                        </p>
+                        <div style="font-size: 13px; color: #999;">2 weeks ago</div>
+                    </div>
+
+                    <!-- Review 6 -->
+                    <div style="background: white; padding: 30px; border: 2px solid #e9ecef;">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: bold; margin-right: 15px;">M</div>
+                            <div>
+                                <div style="font-weight: bold; color: #333;">Meera Iyer</div>
+                                <div style="color: #ffc107; font-size: 14px;">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size: 15px; line-height: 1.6; color: #666; margin-bottom: 10px;">
+                            "Great selection of products and competitive pricing. Bought headphones and a laptop - both authentic with full warranty. Very satisfied!"
+                        </p>
+                        <div style="font-size: 13px; color: #999;">4 weeks ago</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section style="padding: 60px 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; text-align: center;">
+                    <div>
+                        <div style="font-size: 48px; font-weight: bold; margin-bottom: 10px;">5000+</div>
+                        <div style="font-size: 16px; opacity: 0.9;">Happy Customers</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 48px; font-weight: bold; margin-bottom: 10px;">150+</div>
+                        <div style="font-size: 16px; opacity: 0.9;">Products</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 48px; font-weight: bold; margin-bottom: 10px;">4.8/5</div>
+                        <div style="font-size: 16px; opacity: 0.9;">Customer Rating</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 48px; font-weight: bold; margin-bottom: 10px;">24/7</div>
+                        <div style="font-size: 16px; opacity: 0.9;">Support Available</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Box -->
+        <section class="trust-box">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>100% Genuine</h3>
+                    <p>All products are authentic</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-truck"></i>
+                    <h3>Free Shipping</h3>
+                    <p>On orders above ₹5,000</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-undo"></i>
+                    <h3>Easy Returns</h3>
+                    <p>7-day return policy</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Always here to help</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Box -->
+        <footer class="footer-box">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-bolt"></i> TechVault</h3>
+                    <p>Your trusted destination for quality electronics at unbeatable prices.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index-simple.html">Home</a>
+                    <a href="about-page.html">About</a>
+                    <a href="mobiles.html">Mobiles</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Track Order</a>
+                    <a href="#">Returns</a>
+                    <a href="#">Shipping Info</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> hello@TechVault.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Bengaluru, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TechVault. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Currency functionality (same as other pages)
+        const currencies = {
+            'INR': { symbol: '₹', rate: 1, flag: '🇮🇳', name: 'Indian Rupee' },
+            'USD': { symbol: '$', rate: 0.012, flag: '🇺🇸', name: 'US Dollar' },
+            'EUR': { symbol: '€', rate: 0.011, flag: '🇪🇺', name: 'Euro' },
+            'GBP': { symbol: '£', rate: 0.0095, flag: '🇬🇧', name: 'British Pound' },
+            'AUD': { symbol: 'A$', rate: 0.018, flag: '🇦🇺', name: 'Australian Dollar' },
+            'CAD': { symbol: 'C$', rate: 0.016, flag: '🇨🇦', name: 'Canadian Dollar' },
+            'AED': { symbol: 'AED', rate: 0.044, flag: '🇦🇪', name: 'UAE Dirham' },
+            'SGD': { symbol: 'S$', rate: 0.016, flag: '🇸🇬', name: 'Singapore Dollar' }
+        };
+
+        let currentCurrency = 'INR';
+
+        // Live Search Functionality - redirect to appropriate page
+        function initializeSearch() {
+            const searchInput = document.getElementById('headerSearchInput');
+            const searchSuggestions = document.getElementById('searchSuggestions');
+            
+            if (searchInput && searchSuggestions) {
+                searchInput.addEventListener('input', function(e) {
+                    const searchTerm = e.target.value.toLowerCase().trim();
+                    
+                    if (searchTerm === '') {
+                        searchSuggestions.style.display = 'none';
+                        return;
+                    }
+                    
+                    // Show suggestions for different categories
+                    const suggestions = [
+                        { name: 'Search Mobiles', icon: 'fa-mobile-alt', link: 'mobiles.html', description: 'Browse 150+ smartphones' },
+                        { name: 'Search Audio Products', icon: 'fa-headphones', link: 'audio.html', description: 'Browse 196+ audio products' },
+                        { name: 'Search Laptops', icon: 'fa-laptop', link: 'laptops.html', description: 'Browse laptops' },
+                        { name: 'Search Cameras', icon: 'fa-camera', link: 'cameras.html', description: 'Browse cameras' }
+                    ];
+                    
+                    searchSuggestions.innerHTML = suggestions.map(item => `
+                        <div class="search-suggestion-item" style="display: flex; align-items: center; padding: 12px 15px; border-bottom: 1px solid #f0f0f0; cursor: pointer; transition: background 0.2s;" 
+                             onmouseover="this.style.background='#f8f9fa'" 
+                             onmouseout="this.style.background='white'"
+                             onclick="window.location.href='${item.link}'">
+                            <i class="fas ${item.icon}" style="font-size: 24px; color: #007bff; margin-right: 15px;"></i>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600; color: #333; font-size: 14px; margin-bottom: 3px;">${item.name}</div>
+                                <div style="font-size: 12px; color: #666;">${item.description}</div>
+                            </div>
+                            <i class="fas fa-arrow-right" style="color: #999;"></i>
+                        </div>
+                    `).join('');
+                    
+                    searchSuggestions.style.display = 'block';
+                });
+                
+                // Close suggestions when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                        searchSuggestions.style.display = 'none';
+                    }
+                });
+                
+                // Show suggestions when clicking on search input
+                searchInput.addEventListener('focus', function() {
+                    if (searchInput.value.trim() !== '') {
+                        searchInput.dispatchEvent(new Event('input'));
+                    }
+                });
+            }
+        }
+
+        function changeCurrency(newCurrency) {
+            currentCurrency = newCurrency;
+            localStorage.setItem('selectedCurrency', newCurrency);
+            updateCurrencyDisplay();
+            closeCurrencyDropdown();
+        }
+
+        function updateCurrencyDisplay() {
+            const currencyBtn = document.getElementById('currencyBtn');
+            if (currencyBtn) {
+                const currency = currencies[currentCurrency];
+                currencyBtn.innerHTML = `
+                    <span class="currency-flag">${currency.flag}</span>
+                    <span class="currency-code">${currentCurrency}</span>
+                    <i class="fas fa-chevron-down"></i>
+                `;
+            }
+        }
+
+        function toggleCurrencyDropdown() {
+            const dropdown = document.getElementById('currencyDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        function closeCurrencyDropdown() {
+            const dropdown = document.getElementById('currencyDropdown');
+            dropdown.classList.remove('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedCurrency = localStorage.getItem('selectedCurrency');
+            if (savedCurrency && currencies[savedCurrency]) {
+                currentCurrency = savedCurrency;
+            }
+            updateCurrencyDisplay();
+            initializeSearch();
+            updateCartBadge();
+            
+            document.addEventListener('click', function(e) {
+                const currencySelector = document.querySelector('.currency-selector');
+                if (currencySelector && !currencySelector.contains(e.target)) {
+                    closeCurrencyDropdown();
+                }
+            });
+        });
+
+        // Update cart badge from localStorage
+        function updateCartBadge() {
+            const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            const cartBadge = document.getElementById('cartBadge');
+            if (cartBadge) {
+                const totalItems = shoppingCart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                cartBadge.textContent = totalItems;
+            }
+        }
+
+        // Cart button click handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartButton = document.getElementById('cartButton');
+            if (cartButton) {
+                cartButton.onclick = function() {
+                    alert('Cart feature - items saved in localStorage');
+                };
+            }
+        });
+    </script>
+</body>
+</html>

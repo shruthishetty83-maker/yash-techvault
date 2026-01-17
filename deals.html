@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hot Deals - TechVault</title>
+    <link rel="stylesheet" href="style-simple.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="performance-utils.js" defer></script>
+    <style>
+        .deals-hero {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 80px 50px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .deals-hero::before {
+            content: '🔥';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: -50px;
+            right: -50px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .deals-timer {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 0;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+        .timer-box {
+            display: inline-block;
+            margin: 0 10px;
+            text-align: center;
+        }
+        
+        .timer-value {
+            font-size: 36px;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .timer-label {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        
+        .deal-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff4757;
+            color: white;
+            padding: 8px 15px;
+            font-weight: bold;
+            font-size: 14px;
+            z-index: 2;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .deal-category {
+            margin: 60px 0;
+        }
+        
+        .deal-category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .deal-category-title {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .deal-category-icon {
+            font-size: 36px;
+        }
+        
+        .deal-ends {
+            font-size: 14px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+        }
+        
+        .savings-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #2ecc71;
+            color: white;
+            padding: 8px 15px;
+            font-weight: bold;
+            font-size: 14px;
+            z-index: 2;
+        }
+        
+        .stock-indicator {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #e74c3c;
+            font-weight: 600;
+        }
+        
+        .stock-bar {
+            width: 100%;
+            height: 6px;
+            background: #ecf0f1;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        
+        .stock-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #e74c3c 0%, #f39c12 100%);
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header Box -->
+        <header class="header-box">
+            <a href="index-simple.html" style="text-decoration: none; color: inherit;">
+                <div class="logo">
+                    <i class="fas fa-bolt"></i>
+                    <span>TechVault</span>
+                </div>
+            </a>
+            <div class="header-search" style="position: relative;">
+                <input type="text" id="headerSearchInput" placeholder="Search for products, brands, categories..." autocomplete="off">
+                <button class="search-btn" id="headerSearchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div id="searchSuggestions" style="display: none; position: absolute; top: 100%; left: 0; right: 50px; background: white; border: 2px solid #e9ecef; max-height: 400px; overflow-y: auto; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></div>
+            </div>
+            <nav class="nav-box">
+                <a href="index-simple.html"><i class="fas fa-home"></i> Home</a>
+                <a href="about-page.html"><i class="fas fa-info-circle"></i> About</a>
+                <a href="deals.html" class="active"><i class="fas fa-fire"></i> Deals</a>
+                <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+            </nav>
+            <div class="header-actions">
+                <div class="currency-selector">
+                    <button class="currency-btn" id="currencyBtn" onclick="toggleCurrencyDropdown()">
+                        <span class="currency-flag">🇮🇳</span>
+                        <span class="currency-code">INR</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="currency-dropdown" id="currencyDropdown">
+                        <div class="currency-option" onclick="changeCurrency('INR')">
+                            <span class="currency-flag">🇮🇳</span>
+                            <div class="currency-info">
+                                <span class="currency-code">INR ₹</span>
+                                <span class="currency-name">India</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('USD')">
+                            <span class="currency-flag">🇺🇸</span>
+                            <div class="currency-info">
+                                <span class="currency-code">US $</span>
+                                <span class="currency-name">United States</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('EUR')">
+                            <span class="currency-flag">🇪🇺</span>
+                            <div class="currency-info">
+                                <span class="currency-code">EUR €</span>
+                                <span class="currency-name">Europe</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('GBP')">
+                            <span class="currency-flag">🇬🇧</span>
+                            <div class="currency-info">
+                                <span class="currency-code">GBP £</span>
+                                <span class="currency-name">United Kingdom</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('AUD')">
+                            <span class="currency-flag">🇦🇺</span>
+                            <div class="currency-info">
+                                <span class="currency-code">AU $</span>
+                                <span class="currency-name">Australia</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('CAD')">
+                            <span class="currency-flag">🇨🇦</span>
+                            <div class="currency-info">
+                                <span class="currency-code">CA $</span>
+                                <span class="currency-name">Canada</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('AED')">
+                            <span class="currency-flag">🇦🇪</span>
+                            <div class="currency-info">
+                                <span class="currency-code">AED</span>
+                                <span class="currency-name">UAE</span>
+                            </div>
+                        </div>
+                        <div class="currency-option" onclick="changeCurrency('SGD')">
+                            <span class="currency-flag">🇸🇬</span>
+                            <div class="currency-info">
+                                <span class="currency-code">SG $</span>
+                                <span class="currency-name">Singapore</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="icon-button"><i class="fas fa-search"></i></button>
+                <button class="icon-button" id="cartButton"><i class="fas fa-shopping-cart"></i><span class="badge" id="cartBadge">0</span></button>
+            </div>
+        </header>
+
+        <!-- Deals Hero Section -->
+        <section class="deals-hero">
+            <h1 style="font-size: 56px; margin-bottom: 15px;">🔥 Hot Deals & Offers</h1>
+            <p style="font-size: 24px; margin-bottom: 10px;">Limited Time Only - Save Up to 70%!</p>
+            <p style="font-size: 16px; opacity: 0.9;">Flash Sale Ends In:</p>
+            <div class="deals-timer">
+                <div class="timer-box">
+                    <span class="timer-value" id="hours">12</span>
+                    <span class="timer-label">Hours</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-value" id="minutes">34</span>
+                    <span class="timer-label">Minutes</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-value" id="seconds">56</span>
+                    <span class="timer-label">Seconds</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deals Content -->
+        <section class="products-box" style="padding: 60px 50px;">
+            <div class="container" style="max-width: 1400px; margin: 0 auto;">
+                
+                <!-- Flash Sale Category -->
+                <div class="deal-category">
+                    <div class="deal-category-header">
+                        <div class="deal-category-title">
+                            <span class="deal-category-icon">⚡</span>
+                            <span>Flash Sale - Today Only!</span>
+                        </div>
+                        <div class="deal-ends">Ends in 12:34:56</div>
+                    </div>
+                    <div class="product-grid" id="flashSaleGrid">
+                        <!-- Flash sale products will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Smartphone Deals -->
+                <div class="deal-category">
+                    <div class="deal-category-header">
+                        <div class="deal-category-title">
+                            <span class="deal-category-icon">📱</span>
+                            <span>Smartphone Mega Deals</span>
+                        </div>
+                        <div class="deal-ends">Save up to 50%</div>
+                    </div>
+                    <div class="product-grid" id="smartphoneDealsGrid">
+                        <!-- Smartphone deals will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Audio Deals -->
+                <div class="deal-category">
+                    <div class="deal-category-header">
+                        <div class="deal-category-title">
+                            <span class="deal-category-icon">🎧</span>
+                            <span>Audio Equipment Deals</span>
+                        </div>
+                        <div class="deal-ends">Limited Stock</div>
+                    </div>
+                    <div class="product-grid" id="audioDealsGrid">
+                        <!-- Audio deals will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Laptop Deals -->
+                <div class="deal-category">
+                    <div class="deal-category-header">
+                        <div class="deal-category-title">
+                            <span class="deal-category-icon">💻</span>
+                            <span>Laptop Clearance Sale</span>
+                        </div>
+                        <div class="deal-ends">While stocks last</div>
+                    </div>
+                    <div class="product-grid" id="laptopDealsGrid">
+                        <!-- Laptop deals will be loaded here -->
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Trust Box -->
+        <section class="trust-box">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>100% Genuine</h3>
+                    <p>All products are authentic</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-truck"></i>
+                    <h3>Free Shipping</h3>
+                    <p>On orders above ₹5,000</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-undo"></i>
+                    <h3>Easy Returns</h3>
+                    <p>7-day return policy</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Always here to help</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Box -->
+        <footer class="footer-box">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-bolt"></i> TechVault</h3>
+                    <p>Your trusted destination for quality electronics at unbeatable prices.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index-simple.html">Home</a>
+                    <a href="deals.html">Deals</a>
+                    <a href="about-page.html">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Track Order</a>
+                    <a href="#">Returns</a>
+                    <a href="#">Shipping Info</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> hello@TechVault.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Bengaluru, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TechVault. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="deals-data.js"></script>
+    <script>
+        // Countdown Timer
+        function updateTimer() {
+            const now = new Date();
+            const endOfDay = new Date();
+            endOfDay.setHours(23, 59, 59, 999);
+            
+            const diff = endOfDay - now;
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+        
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Currency functionality
+        const currencies = {
+            'INR': { symbol: '₹', rate: 1, flag: '🇮🇳', name: 'Indian Rupee' },
+            'USD': { symbol: '$', rate: 0.012, flag: '🇺🇸', name: 'US Dollar' },
+            'EUR': { symbol: '€', rate: 0.011, flag: '🇪🇺', name: 'Euro' },
+            'GBP': { symbol: '£', rate: 0.0095, flag: '🇬🇧', name: 'British Pound' },
+            'AUD': { symbol: 'A$', rate: 0.018, flag: '🇦🇺', name: 'Australian Dollar' },
+            'CAD': { symbol: 'C$', rate: 0.016, flag: '🇨🇦', name: 'Canadian Dollar' },
+            'AED': { symbol: 'AED', rate: 0.044, flag: '🇦🇪', name: 'UAE Dirham' },
+            'SGD': { symbol: 'S$', rate: 0.016, flag: '🇸🇬', name: 'Singapore Dollar' }
+        };
+
+        let currentCurrency = 'INR';
+
+        function formatPrice(priceText) {
+            const priceNum = parseInt(priceText.replace(/[^\d]/g, ''));
+            const currency = currencies[currentCurrency];
+            const convertedPrice = priceNum * currency.rate;
+            
+            if (currentCurrency === 'INR') {
+                return `${currency.symbol}${convertedPrice.toLocaleString('en-IN')}`;
+            } else {
+                return `${currency.symbol}${convertedPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+            }
+        }
+
+        function updateAllPrices() {
+            document.querySelectorAll('.product-price').forEach(priceEl => {
+                const originalPrice = priceEl.getAttribute('data-original-price');
+                if (originalPrice) {
+                    priceEl.textContent = formatPrice(originalPrice);
+                }
+            });
+            
+            document.querySelectorAll('.old-price').forEach(priceEl => {
+                const originalPrice = priceEl.getAttribute('data-original-price');
+                if (originalPrice) {
+                    priceEl.textContent = formatPrice(originalPrice);
+                }
+            });
+        }
+
+        function storeOriginalPrices() {
+            document.querySelectorAll('.product-price').forEach(priceEl => {
+                if (!priceEl.getAttribute('data-original-price')) {
+                    priceEl.setAttribute('data-original-price', priceEl.textContent);
+                }
+            });
+            
+            document.querySelectorAll('.old-price').forEach(priceEl => {
+                if (!priceEl.getAttribute('data-original-price')) {
+                    priceEl.setAttribute('data-original-price', priceEl.textContent);
+                }
+            });
+        }
+
+        function changeCurrency(newCurrency) {
+            currentCurrency = newCurrency;
+            localStorage.setItem('selectedCurrency', newCurrency);
+            updateCurrencyDisplay();
+            updateAllPrices();
+            closeCurrencyDropdown();
+            showNotification(`Currency changed to ${currencies[newCurrency].name}`);
+        }
+
+        function updateCurrencyDisplay() {
+            const currencyBtn = document.getElementById('currencyBtn');
+            if (currencyBtn) {
+                const currency = currencies[currentCurrency];
+                currencyBtn.innerHTML = `
+                    <span class="currency-flag">${currency.flag}</span>
+                    <span class="currency-code">${currentCurrency}</span>
+                    <i class="fas fa-chevron-down"></i>
+                `;
+            }
+        }
+
+        function toggleCurrencyDropdown() {
+            const dropdown = document.getElementById('currencyDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        function closeCurrencyDropdown() {
+            const dropdown = document.getElementById('currencyDropdown');
+            dropdown.classList.remove('active');
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+                font-weight: 600;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 1500);
+        }
+
+        function updateCartBadge() {
+            const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            const cartBadge = document.getElementById('cartBadge');
+            if (cartBadge) {
+                const totalItems = shoppingCart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+                cartBadge.textContent = totalItems;
+            }
+        }
+
+        function addToCart(productName, productPrice, productDesc, productImage) {
+            let shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            
+            const existingProduct = shoppingCart.find(item => item.name === productName);
+            
+            if (existingProduct) {
+                existingProduct.quantity = (existingProduct.quantity || 1) + 1;
+            } else {
+                const product = {
+                    name: productName,
+                    price: productPrice,
+                    desc: productDesc,
+                    image: productImage,
+                    quantity: 1,
+                    id: Date.now()
+                };
+                shoppingCart.push(product);
+            }
+            
+            localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
+            updateCartBadge();
+            showNotification(`${productName} added to cart!`);
+        }
+
+        function attachCartHandlers() {
+            document.querySelectorAll('.product-grid').forEach(grid => {
+                grid.addEventListener('click', function(e) {
+                    const buyBtn = e.target.closest('.buy-button');
+                    if (buyBtn) {
+                        e.preventDefault();
+                        const productBox = buyBtn.closest('.product-box');
+                        if (productBox) {
+                            const productName = productBox.querySelector('h3')?.textContent || 'Product';
+                            const productPrice = productBox.querySelector('.product-price')?.textContent || '₹0';
+                            const productDesc = productBox.querySelector('.product-description')?.textContent || '';
+                            const productImage = productBox.querySelector('.product-image-real')?.src || '';
+                            
+                            addToCart(productName, productPrice, productDesc, productImage);
+                        }
+                    }
+                });
+            });
+            
+            const cartButton = document.getElementById('cartButton');
+            if (cartButton) {
+                cartButton.onclick = function() {
+                    alert('Cart feature - items saved in localStorage');
+                };
+            }
+        }
+
+        // Search functionality
+        function initializeSearch() {
+            const searchInput = document.getElementById('headerSearchInput');
+            const searchSuggestions = document.getElementById('searchSuggestions');
+            
+            if (searchInput && searchSuggestions) {
+                searchInput.addEventListener('input', function(e) {
+                    const searchTerm = e.target.value.toLowerCase().trim();
+                    
+                    if (searchTerm === '') {
+                        searchSuggestions.style.display = 'none';
+                        return;
+                    }
+                    
+                    const suggestions = [
+                        { name: 'Search Mobiles', icon: 'fa-mobile-alt', link: 'mobiles.html', description: 'Browse 150+ smartphones' },
+                        { name: 'Search Audio Products', icon: 'fa-headphones', link: 'audio.html', description: 'Browse 196+ audio products' },
+                        { name: 'Search Laptops', icon: 'fa-laptop', link: 'laptops.html', description: 'Browse laptops' },
+                        { name: 'Search Cameras', icon: 'fa-camera', link: 'cameras.html', description: 'Browse cameras' },
+                        { name: 'View All Deals', icon: 'fa-fire', link: 'deals.html', description: 'Hot deals & offers' }
+                    ];
+                    
+                    searchSuggestions.innerHTML = suggestions.map(item => `
+                        <div class="search-suggestion-item" style="display: flex; align-items: center; padding: 12px 15px; border-bottom: 1px solid #f0f0f0; cursor: pointer; transition: background 0.2s;" 
+                             onmouseover="this.style.background='#f8f9fa'" 
+                             onmouseout="this.style.background='white'"
+                             onclick="window.location.href='${item.link}'">
+                            <i class="fas ${item.icon}" style="font-size: 24px; color: #007bff; margin-right: 15px;"></i>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 600; color: #333; font-size: 14px; margin-bottom: 3px;">${item.name}</div>
+                                <div style="font-size: 12px; color: #666;">${item.description}</div>
+                            </div>
+                            <i class="fas fa-arrow-right" style="color: #999;"></i>
+                        </div>
+                    `).join('');
+                    
+                    searchSuggestions.style.display = 'block';
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                        searchSuggestions.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedCurrency = localStorage.getItem('selectedCurrency');
+            if (savedCurrency && currencies[savedCurrency]) {
+                currentCurrency = savedCurrency;
+            }
+            
+            updateCartBadge();
+            updateCurrencyDisplay();
+            initializeSearch();
+            
+            setTimeout(() => {
+                storeOriginalPrices();
+                updateAllPrices();
+                attachCartHandlers();
+            }, 500);
+            
+            document.addEventListener('click', function(e) {
+                const currencySelector = document.querySelector('.currency-selector');
+                if (currencySelector && !currencySelector.contains(e.target)) {
+                    closeCurrencyDropdown();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
