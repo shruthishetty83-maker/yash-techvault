@@ -13,26 +13,6 @@
         <!-- Mobile Menu Overlay -->
         <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
         
-        <!-- Cart Modal - Sliding Side Panel -->
-        <div id="cartModal" style="display: none; position: fixed; top: 0; right: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; transition: opacity 0.3s ease;">
-            <div id="cartPanel" style="position: absolute; top: 0; right: -450px; width: 450px; max-width: 90%; height: 100%; background: white; box-shadow: -5px 0 25px rgba(0,0,0,0.3); transition: right 0.3s ease; overflow-y: auto;">
-                <div style="padding: 25px; border-bottom: 2px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); position: sticky; top: 0; z-index: 10;">
-                    <h2 style="margin: 0; color: white; font-size: 24px;"><i class="fas fa-shopping-cart"></i> Your Cart</h2>
-                    <button onclick="closeCartModal()" style="background: none; border: none; color: white; font-size: 28px; cursor: pointer; padding: 0; width: 35px; height: 35px; line-height: 1;">&times;</button>
-                </div>
-                <div id="cartItems" style="padding: 20px; min-height: 200px;"></div>
-                <div style="padding: 20px; border-top: 2px solid #f0f0f0; background: #f8f9fa; position: sticky; bottom: 0;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                        <span style="font-size: 20px; font-weight: 600;">Total:</span>
-                        <span id="cartTotal" style="font-size: 24px; font-weight: bold; color: #f5576c;">₹0</span>
-                    </div>
-                    <button onclick="proceedToBuy()" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border: none; border-radius: 0; font-size: 18px; font-weight: 600; cursor: pointer; transition: transform 0.2s;">
-                        <i class="fas fa-credit-card"></i> Proceed to Buy
-                    </button>
-                </div>
-            </div>
-        </div>
-        
         <!-- Header Box -->
         <header class="header-box">
             <a href="index.html" style="text-decoration: none; color: inherit; cursor: pointer;">
@@ -127,7 +107,6 @@
                     </div>
                 </div>
                 <button class="icon-button"><i class="fas fa-search"></i></button>
-                <button class="icon-button" id="cartButton"><i class="fas fa-shopping-cart"></i><span class="badge" id="cartBadge">0</span></button>
             </div>
         </header>
 
@@ -810,43 +789,18 @@
             });
         }
 
-        // Update cart badge from localStorage
-        function updateCartBadge() {
-            const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
-            const cartBadge = document.getElementById('cartBadge');
-            if (cartBadge) {
-                const totalItems = shoppingCart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-                cartBadge.textContent = totalItems;
-            }
-        }
-
-        // Add to cart function for homepage
-        function addToCart(productName, productPrice, productDesc, productImage) {
-            let shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
-            
-            // Check if product already exists in cart
-            const existingProduct = shoppingCart.find(item => item.name === productName);
-            
-            if (existingProduct) {
-                existingProduct.quantity = (existingProduct.quantity || 1) + 1;
-            } else {
-                const product = {
-                    name: productName,
-                    price: productPrice,
-                    desc: productDesc,
-                    image: productImage,
-                    quantity: 1,
-                    id: Date.now()
+        // Attach handlers to buy buttons
+        function attachBuyHandlers() {
+            document.querySelectorAll('.buy-button').forEach(button => {
+                button.onclick = function(e) {
+                    e.preventDefault();
+                    const productBox = this.closest('.product-box');
+                    if (productBox) {
+                        const productName = productBox.querySelector('h3')?.textContent || 'Product';
+                        showNotification(`${productName} - Buy feature coming soon!`);
+                    }
                 };
-                shoppingCart.push(product);
-            }
-            
-            // Save to localStorage
-            localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
-            updateCartBadge();
-            
-            // Show notification
-            showNotification(`${productName} added to cart!`);
+            });
         }
 
         // Show notification
@@ -874,150 +828,8 @@
             }, 1500);
         }
 
-        // Attach cart handlers to all buy buttons
-        function attachCartHandlers() {
-            document.querySelectorAll('.buy-button').forEach(button => {
-                button.onclick = function(e) {
-                    e.preventDefault();
-                    const productBox = this.closest('.product-box');
-                    if (productBox) {
-                        const productName = productBox.querySelector('h3')?.textContent || 'Product';
-                        const productPrice = productBox.querySelector('.product-price')?.textContent || '₹0';
-                        const productDesc = productBox.querySelector('.product-description')?.textContent || '';
-                        const productImage = productBox.querySelector('.product-image-real')?.src || '';
-                        
-                        addToCart(productName, productPrice, productDesc, productImage);
-                    }
-                };
-            });
-            
-            // Cart button click handler - show cart modal
-            const cartButton = document.getElementById('cartButton');
-            if (cartButton) {
-                cartButton.onclick = function() {
-                    showCartModal();
-                };
-            }
-        }
-        
-        // Show cart modal
-        function showCartModal() {
-            const cartModal = document.getElementById('cartModal');
-            const cartPanel = document.getElementById('cartPanel');
-            const cartItems = document.getElementById('cartItems');
-            const cartTotal = document.getElementById('cartTotal');
-            const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
-            
-            if (shoppingCart.length === 0) {
-                cartItems.innerHTML = `
-                    <div style="text-align: center; padding: 40px; color: #999;">
-                        <i class="fas fa-shopping-cart" style="font-size: 64px; margin-bottom: 20px;"></i>
-                        <p style="font-size: 18px;">Your cart is empty</p>
-                        <p>Add some products to get started!</p>
-                    </div>
-                `;
-                cartTotal.textContent = '₹0';
-            } else {
-                let total = 0;
-                cartItems.innerHTML = shoppingCart.map((item, index) => {
-                    const price = parseInt(item.price.replace(/[^\d]/g, ''));
-                    const quantity = item.quantity || 1;
-                    const itemTotal = price * quantity;
-                    total += itemTotal;
-                    
-                    return `
-                        <div style="display: flex; gap: 15px; padding: 15px; border-bottom: 1px solid #f0f0f0; align-items: center;">
-                            <img src="${item.image}" alt="${item.name}" style="width: 80px; height: 80px; object-fit: cover; border: 1px solid #e9ecef;">
-                            <div style="flex: 1;">
-                                <h4 style="margin: 0 0 5px 0; font-size: 16px;">${item.name}</h4>
-                                <p style="margin: 0; color: #666; font-size: 14px;">${item.desc}</p>
-                                <div style="margin-top: 8px; display: flex; align-items: center; gap: 10px;">
-                                    <button onclick="updateQuantity(${index}, -1)" style="width: 30px; height: 30px; border: 1px solid #ddd; background: white; cursor: pointer; font-size: 16px;">-</button>
-                                    <span style="font-weight: 600; min-width: 30px; text-align: center;">${quantity}</span>
-                                    <button onclick="updateQuantity(${index}, 1)" style="width: 30px; height: 30px; border: 1px solid #ddd; background: white; cursor: pointer; font-size: 16px;">+</button>
-                                    <button onclick="removeFromCart(${index})" style="margin-left: auto; color: #f5576c; background: none; border: none; cursor: pointer; font-size: 14px;"><i class="fas fa-trash"></i> Remove</button>
-                                </div>
-                            </div>
-                            <div style="text-align: right;">
-                                <div style="font-weight: bold; font-size: 18px; color: #f5576c;">₹${itemTotal.toLocaleString('en-IN')}</div>
-                                <div style="font-size: 12px; color: #999;">₹${price.toLocaleString('en-IN')} each</div>
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-                
-                cartTotal.textContent = `₹${total.toLocaleString('en-IN')}`;
-            }
-            
-            // Show modal with slide animation
-            cartModal.style.display = 'block';
-            setTimeout(() => {
-                cartPanel.style.right = '0';
-            }, 10);
-        }
-
-        // Close cart modal
-        function closeCartModal() {
-            const cartModal = document.getElementById('cartModal');
-            const cartPanel = document.getElementById('cartPanel');
-            
-            // Slide out animation
-            cartPanel.style.right = '-450px';
-            setTimeout(() => {
-                cartModal.style.display = 'none';
-            }, 300);
-        }
-
-        // Update quantity
-        function updateQuantity(index, change) {
-            let shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
-            if (shoppingCart[index]) {
-                shoppingCart[index].quantity = (shoppingCart[index].quantity || 1) + change;
-                if (shoppingCart[index].quantity <= 0) {
-                    shoppingCart.splice(index, 1);
-                }
-                localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
-                updateCartBadge();
-                showCartModal();
-            }
-        }
-
-        // Remove from cart
-        function removeFromCart(index) {
-            let shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
-            shoppingCart.splice(index, 1);
-            localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
-            updateCartBadge();
-            showCartModal();
-        }
-
-        // Proceed to buy
-        function proceedToBuy() {
-            const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
-            if (shoppingCart.length === 0) {
-                alert('Your cart is empty!');
-                return;
-            }
-            
-            const totalItems = shoppingCart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-            let total = 0;
-            shoppingCart.forEach(item => {
-                const price = parseInt(item.price.replace(/[^\d]/g, ''));
-                total += price * (item.quantity || 1);
-            });
-            
-            alert(`🎉 Thank you for shopping at TechVault!\n\n📦 Order Summary:\n• ${totalItems} item(s) in cart\n• Total: ₹${total.toLocaleString('en-IN')}\n• Free shipping on orders above ₹5,000\n\n✅ This is a demo - checkout page would open here.`);
-            
-            // Clear cart after purchase
-            localStorage.removeItem('shoppingCart');
-            updateCartBadge();
-            closeCartModal();
-        }
-
         // Close modal when clicking outside (on overlay)
         document.addEventListener('click', function(e) {
-            const cartModal = document.getElementById('cartModal');
-            if (e.target === cartModal) {
                 closeCartModal();
             }
         });
@@ -1035,8 +847,7 @@
             updateAllPrices();
             initializeSearch(); // Initialize search functionality
             applyDiscount(); // Apply 10% discount
-            updateCartBadge(); // Update cart badge from localStorage
-            attachCartHandlers(); // Attach cart handlers
+            attachBuyHandlers(); // Attach buy button handlers
             
             // Close currency dropdown when clicking outside
             document.addEventListener('click', function(e) {
