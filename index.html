@@ -10,14 +10,23 @@
 </head>
 <body>
     <div class="main-container">
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+        
         <!-- Header Box -->
         <header class="header-box">
-            <a href="index-simple.html" style="text-decoration: none; color: inherit; cursor: pointer;">
+            <a href="index.html" style="text-decoration: none; color: inherit; cursor: pointer;">
                 <div class="logo">
                     <i class="fas fa-bolt"></i>
                     <span>TechVault</span>
                 </div>
             </a>
+            
+            <!-- Hamburger Menu Button (Mobile Only) -->
+            <button class="hamburger-menu" id="hamburgerMenu" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            
             <div class="header-search" style="position: relative;">
                 <input type="text" id="headerSearchInput" placeholder="Search for products, brands, categories..." autocomplete="off">
                 <button class="search-btn" id="headerSearchBtn">
@@ -25,8 +34,8 @@
                 </button>
                 <div id="searchSuggestions" style="display: none; position: absolute; top: 100%; left: 0; right: 50px; background: white; border: 2px solid #e9ecef; max-height: 400px; overflow-y: auto; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></div>
             </div>
-            <nav class="nav-box">
-                <a href="index-simple.html"><i class="fas fa-home"></i> Home</a>
+            <nav class="nav-box" id="navBox">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
                 <a href="about-page.html"><i class="fas fa-info-circle"></i> About</a>
                 <a href="deals.html"><i class="fas fa-fire"></i> Deals</a>
                 <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
@@ -1103,6 +1112,40 @@
         setVH();
         window.addEventListener('resize', setVH);
         window.addEventListener('orientationchange', setVH);
+        
+        // Mobile Menu Toggle Functions
+        function toggleMobileMenu() {
+            const navBox = document.getElementById('navBox');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            const hamburger = document.getElementById('hamburgerMenu');
+            
+            navBox.classList.toggle('active');
+            overlay.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (navBox.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+        
+        function closeMobileMenu() {
+            const navBox = document.getElementById('navBox');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            const hamburger = document.getElementById('hamburgerMenu');
+            
+            navBox.classList.remove('active');
+            overlay.classList.remove('active');
+            hamburger.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-box a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
     </script>
 </body>
 </html>
