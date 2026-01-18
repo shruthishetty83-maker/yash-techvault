@@ -470,8 +470,17 @@ body {
 
 /* Categories Box */
 .categories-box {
-    padding: 80px 50px;
+    padding: 80px 0;
     background: #fff;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 50px;
 }
 
 .section-title {
@@ -523,8 +532,9 @@ body {
 
 /* Products Box */
 .products-box {
-    padding: 80px 50px;
+    padding: 80px 0;
     background: #f8f9fa;
+    width: 100%;
 }
 
 .section-header {
@@ -757,8 +767,9 @@ body {
 
 /* Trust Box */
 .trust-box {
-    padding: 60px 50px;
+    padding: 60px 0;
     background: #fff;
+    width: 100%;
 }
 
 .trust-grid {
@@ -790,9 +801,10 @@ body {
 
 /* Footer Box */
 .footer-box {
-    padding: 60px 50px 30px;
+    padding: 60px 0 30px;
     background: #f8f9fa;
     border-top: 1px solid #e9ecef;
+    width: 100%;
 }
 
 .footer-content {
@@ -3431,11 +3443,6 @@ body {
 
 /* Large Desktop (1440px+) */
 @media screen and (min-width: 1440px) {
-    .main-container {
-        max-width: 1600px;
-        margin: 0 auto;
-    }
-    
     .header-box {
         padding: 20px 80px;
     }
