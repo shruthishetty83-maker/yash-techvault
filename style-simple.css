@@ -5,17 +5,30 @@
     padding: 0;
 }
 
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: #f8f9fa;
+    background: #fff;
     color: #333;
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 /* Main Container Box */
 .main-container {
     max-width: 100%;
+    width: 100%;
     margin: 0;
+    padding: 0;
     background: #fff;
     box-shadow: none;
 }
