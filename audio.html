@@ -9,15 +9,15 @@
     <script src="performance-utils.js" defer></script>
 </head>
 <body>
-    <!-- Cart Modal -->
-    <div id="cartModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000; justify-content: center; align-items: center;">
-        <div style="background: white; border-radius: 0; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
-            <div style="padding: 25px; border-bottom: 2px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+    <!-- Cart Modal - Sliding Side Panel -->
+    <div id="cartModal" style="display: none; position: fixed; top: 0; right: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; transition: opacity 0.3s ease;">
+        <div id="cartPanel" style="position: absolute; top: 0; right: -450px; width: 450px; max-width: 90%; height: 100%; background: white; box-shadow: -5px 0 25px rgba(0,0,0,0.3); transition: right 0.3s ease; overflow-y: auto;">
+            <div style="padding: 25px; border-bottom: 2px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); position: sticky; top: 0; z-index: 10;">
                 <h2 style="margin: 0; color: white; font-size: 24px;"><i class="fas fa-shopping-cart"></i> Your Cart</h2>
-                <button onclick="closeCartModal()" style="background: none; border: none; color: white; font-size: 28px; cursor: pointer; padding: 0; width: 35px; height: 35px;">&times;</button>
+                <button onclick="closeCartModal()" style="background: none; border: none; color: white; font-size: 28px; cursor: pointer; padding: 0; width: 35px; height: 35px; line-height: 1;">&times;</button>
             </div>
             <div id="cartItems" style="padding: 20px; min-height: 200px;"></div>
-            <div style="padding: 20px; border-top: 2px solid #f0f0f0; background: #f8f9fa;">
+            <div style="padding: 20px; border-top: 2px solid #f0f0f0; background: #f8f9fa; position: sticky; bottom: 0;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <span style="font-size: 20px; font-weight: 600;">Total:</span>
                     <span id="cartTotal" style="font-size: 24px; font-weight: bold; color: #f5576c;">₹0</span>
@@ -632,6 +632,7 @@
         // Show cart modal
         function showCartModal() {
             const cartModal = document.getElementById('cartModal');
+            const cartPanel = document.getElementById('cartPanel');
             const cartItems = document.getElementById('cartItems');
             const cartTotal = document.getElementById('cartTotal');
             const shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
@@ -677,12 +678,23 @@
                 cartTotal.textContent = `₹${total.toLocaleString('en-IN')}`;
             }
             
-            cartModal.style.display = 'flex';
+            // Show modal with slide animation
+            cartModal.style.display = 'block';
+            setTimeout(() => {
+                cartPanel.style.right = '0';
+            }, 10);
         }
 
         // Close cart modal
         function closeCartModal() {
-            document.getElementById('cartModal').style.display = 'none';
+            const cartModal = document.getElementById('cartModal');
+            const cartPanel = document.getElementById('cartPanel');
+            
+            // Slide out animation
+            cartPanel.style.right = '-450px';
+            setTimeout(() => {
+                cartModal.style.display = 'none';
+            }, 300);
         }
 
         // Update quantity
@@ -731,9 +743,10 @@
             closeCartModal();
         }
 
-        // Close modal when clicking outside
+        // Close modal when clicking outside (on overlay)
         document.addEventListener('click', function(e) {
             const cartModal = document.getElementById('cartModal');
+            const cartPanel = document.getElementById('cartPanel');
             if (e.target === cartModal) {
                 closeCartModal();
             }
